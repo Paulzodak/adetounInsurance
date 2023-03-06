@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { Layout } from "@/components/templates/Layout";
 import hero from "../assets/home/hero.jpg";
 import { Button } from "@/components/atoms/Button";
+import { OurProducts } from "@/components/organisms/home/OurProducts";
 export default function Home() {
   const { username } = useSelector((state: any) => state.user);
   console.log(username);
@@ -24,6 +25,7 @@ export default function Home() {
             </div>
           </div>
         </div>
+        <OurProducts />
       </Layout>
     </>
   );
