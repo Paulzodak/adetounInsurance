@@ -11,7 +11,7 @@ export function NavUtility(props: any) {
   const iconSize = "1.5rem";
 
   return (
-    <div className=" grid grid-cols-[auto_auto] border">
+    <div className=" grid grid-cols-[auto_auto] ">
       <div className=" w-[8rem] md:w-[15rem] mt-[0.6rem] ">
         <Search placeholder={"Search product..."} />
       </div>
