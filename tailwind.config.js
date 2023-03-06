@@ -15,6 +15,10 @@ module.exports = {
       fontFamily: {
         inter: ["'Inter', sans-serif"],
       },
+      backgroundImage: {
+        hero: "url('../assets/home/hero.jpg')",
+        // "footer-texture": "url('/img/footer-texture.png')",
+      },
     },
   },
   plugins: [],

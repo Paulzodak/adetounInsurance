@@ -26,12 +26,6 @@ export function NavItems(props: any) {
       </div>
       {!props.showSideNav && (
         <motion.div
-          initial={{ x: -500 }}
-          animate={{
-            x: 0,
-            transition: { duration: 0.1 },
-          }}
-          exit={{ x: 500 }}
           className={`lg:hidden`}
           onClick={() => props.setShowSideNav(true)}
         >

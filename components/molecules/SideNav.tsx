@@ -5,6 +5,7 @@ import Image from "next/image";
 import user from "../../assets/navbar/user.png";
 import { CiSettings as SettingsIcon } from "react-icons/ci";
 import { useRouter } from "next/router";
+import { Button } from "../atoms/Button";
 export interface ISideNavProps {}
 
 export function SideNav(props: any) {
@@ -47,6 +48,9 @@ export function SideNav(props: any) {
           />
         </motion.div>
       )}
+      <div className="w-[25%] m-5">
+        <Button text="Login/Sign"></Button>
+      </div>
       <motion.div
         variants={container}
         initial="hidden"

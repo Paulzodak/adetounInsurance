@@ -18,8 +18,8 @@ export function Layout(props: any) {
     {
       name: "Shop",
       icon: <ShopIcon size={iconsize} color="inherit" />,
-      route: "/home",
-      query: "/home",
+      route: "/",
+      query: "/",
     },
     {
       name: "Offers",
