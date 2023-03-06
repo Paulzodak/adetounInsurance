@@ -16,8 +16,14 @@ export function NavUtility(props: any) {
         <Search placeholder={"Search product..."} />
       </div>
       <div className=" grid grid-cols-[auto_auto_auto_auto] pt-[1rem]">
-        <CartIcon size={iconSize} />
+        <div className="relative">
+          <CartIcon size={iconSize} />
+          <button className="absolute top-3 left-3 text-xs bg-btnGreen px-[4px] rounded-full text-[white]">
+            2
+          </button>
+        </div>
         <div>Cart</div>
+
         <div className="w-7 h-7 relative mx-4  rounded-full shadow-md">
           <Image className="rounded-full" src={user} alt={"user"} fill />
         </div>

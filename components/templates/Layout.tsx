@@ -6,9 +6,40 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { SideNav } from "../molecules/SideNav";
 import { AnimatePresence } from "framer-motion";
+import { CiShop as ShopIcon } from "react-icons/ci";
+import { BsCart3 as OfferIcon } from "react-icons/bs";
+import { CiSettings as SettingsIcon } from "react-icons/ci";
+import { SiBloglovin as BlogIcon } from "react-icons/si";
 export interface ILayoutProps {}
 export function Layout(props: any) {
   const [showSideNav, setShowSideNav] = useState(false);
+  const iconsize = "1.5rem";
+  const navItems = [
+    {
+      name: "Shop",
+      icon: <ShopIcon size={iconsize} color="inherit" />,
+      route: "/home",
+      query: "/home",
+    },
+    {
+      name: "Offers",
+      icon: <OfferIcon size={iconsize} />,
+      route: "/offers",
+      query: "/offers",
+    },
+    {
+      name: "Settings",
+      icon: <SettingsIcon size={iconsize} />,
+      route: "/settings",
+      query: "/settings",
+    },
+    {
+      name: "Blog",
+      icon: <BlogIcon size={iconsize} />,
+      route: "/blog",
+      query: "/blog",
+    },
+  ];
   const FooterItems = [
     {
       header: "About",
@@ -85,9 +116,10 @@ export function Layout(props: any) {
                 mass: 2,
               },
             }}
-            className="absolute w-screen h-screen bg-[white] z-10 border"
+            className="fixed w-screen  sm:w-[50%] h-screen overflow-hidden bg-[white] z-10 border lg:hidden"
           >
             <SideNav
+              navItems={navItems}
               showSideNav={showSideNav}
               setShowSideNav={setShowSideNav}
             />
@@ -96,7 +128,11 @@ export function Layout(props: any) {
       </AnimatePresence>
       {/* ------------------NAVBAR--------------------------- */}
       <div className="grid grid-cols-[0.5fr_2fr] lg:grid-cols-[17rem_3rem_40rem] w-full justify-around h-[4rem] overflow-hidden ">
-        <NavItems showSideNav={showSideNav} setShowSideNav={setShowSideNav} />
+        <NavItems
+          navItems={navItems}
+          showSideNav={showSideNav}
+          setShowSideNav={setShowSideNav}
+        />
         <div className="hidden lg:block"></div>
         <NavUtility />
       </div>

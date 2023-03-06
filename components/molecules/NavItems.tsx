@@ -1,28 +1,27 @@
 import * as React from "react";
 import { AiOutlineMenu as MenuIcon } from "react-icons/ai";
 import { motion } from "framer-motion";
-export interface INavbarProps {}
-
+import { useRouter } from "next/router";
 export function NavItems(props: any) {
-  const navItems = [
-    {
-      name: "Shop",
-    },
-    {
-      name: "Offers",
-    },
-    {
-      name: "Our story",
-    },
-    {
-      name: "Blog",
-    },
-  ];
+  const router = useRouter();
   return (
     <div className="">
       <div className="hidden lg:grid grid-cols-[auto_auto_auto_auto_]  mt-[1rem] ">
-        {navItems.map((item: any) => (
-          <div className="text-md font-inter">{item.name}</div>
+        {props.navItems.map((item: any) => (
+          <div
+            onClick={() => {
+              router.push({
+                pathname: item.route,
+                query: { keyword: item.route },
+              });
+            }}
+            className={`px-2 hover:border-l-4 hover:border-btnGreen cursor-pointer duration-150 ease-out text-md font-inter  ${
+              item.route === router.query.keyword &&
+              "border-l-4 border-btnGreen text-btnGreen"
+            }`}
+          >
+            {item.name}
+          </div>
         ))}
       </div>
       {!props.showSideNav && (
@@ -33,7 +32,7 @@ export function NavItems(props: any) {
             transition: { duration: 0.1 },
           }}
           exit={{ x: 500 }}
-          className="lg:hidden"
+          className={`lg:hidden`}
           onClick={() => props.setShowSideNav(true)}
         >
           <MenuIcon size="2rem" className="mt-4 ml-4" />
