@@ -23,9 +23,9 @@ export function OurProducts(props: IOurProductsProps) {
     });
   };
   return (
-    <div className="border">
-      <h1 className="text-4xl text-center mt-40 font-bold">Our products</h1>
-      <div className="grid grid-cols-2 w-[20rem] mx-auto mt-8 cursor-pointer">
+    <div className="border py-40">
+      <h1 className="text-4xl text-center  font-bold">Our products</h1>
+      <div className="grid grid-cols-2 w-[20rem] mx-auto mt-8  cursor-pointer">
         {filters.map((item: any, index: number) => {
           return (
             <div
