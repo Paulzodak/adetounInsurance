@@ -98,7 +98,7 @@ export function OurProducts(props: IOurProductsProps) {
     });
   };
   return (
-    <div className="border py-40">
+    <div className="py-40">
       <h1 className="text-4xl text-center  font-bold">Our products</h1>
       <div className="grid grid-cols-2 w-[20rem]  mx-auto mt-8  cursor-pointer">
         {filter.map((item: any, index: number) => {

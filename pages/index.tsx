@@ -5,6 +5,8 @@ import { Layout } from "@/components/templates/Layout";
 import hero from "../assets/home/hero.jpg";
 import { Button } from "@/components/atoms/Button";
 import { OurProducts } from "@/components/organisms/home/OurProducts";
+import { EventPromotion } from "@/components/organisms/home/EventPromotion";
+import { Instagram } from "@/components/organisms/home/Instagram";
 export default function Home() {
   const { username } = useSelector((state: any) => state.user);
   console.log(username);
@@ -20,12 +22,14 @@ export default function Home() {
             <div className="text-sm mt-4 w-40 sm:w-80">
               Fashion label luxury essentials for your skin
             </div>
-            <div className="w-[7rem] sm:w-40 mt-4">
+            <div className="w-[7rem] sm:w-40 mt-4 h-10">
               <Button text="Shop now"></Button>
             </div>
           </div>
         </div>
         <OurProducts />
+        <EventPromotion />
+        <Instagram />
       </Layout>
     </>
   );

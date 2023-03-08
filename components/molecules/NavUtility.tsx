@@ -28,7 +28,7 @@ export function NavUtility(props: any) {
           <Image className="rounded-full" src={user} alt={"user"} fill />
         </div>
 
-        <div className="hidden sm:block mt-[-0.3rem]">
+        <div className="hidden h-10 sm:block mt-[-0.3rem] ">
           <Button text="Login/Signup"></Button>
         </div>
 

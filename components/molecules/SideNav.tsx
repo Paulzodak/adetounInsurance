@@ -48,7 +48,7 @@ export function SideNav(props: any) {
           />
         </motion.div>
       )}
-      <div className="w-[25%] m-5">
+      <div className="w-[25%] m-5 h-10">
         <Button text="Login/Sign"></Button>
       </div>
       <motion.div
