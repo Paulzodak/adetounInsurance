@@ -35,10 +35,11 @@ export default function Home() {
         <div className="my-10">
           <video
             src={require("../assets/home/video.mp4")}
-            className=" mx-auto h-[20rem] w-[full] md:h-[40rem] "
+            className=" mx-auto h-[20rem] w-[full] md:h-[40rem]  "
             autoPlay
             loop
             muted
+            playsInline
           />
         </div>
       </Layout>
