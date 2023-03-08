@@ -3,15 +3,22 @@ import { NavItems } from "../molecules/NavItems";
 import { NavUtility } from "../molecules/NavUtility";
 import { CiMail as MailIcon } from "react-icons/ci";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SideNav } from "../molecules/SideNav";
 import { AnimatePresence } from "framer-motion";
 import { CiShop as ShopIcon } from "react-icons/ci";
 import { BsCart3 as OfferIcon } from "react-icons/bs";
 import { CiSettings as SettingsIcon } from "react-icons/ci";
 import { SiBloglovin as BlogIcon } from "react-icons/si";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 export interface ILayoutProps {}
 export function Layout(props: any) {
+  const router = useRouter();
+  const { utilitySearch } = useSelector((state: any) => state.utilities);
+  useEffect(() => {
+    utilitySearch.length > 0 && router.push("/search");
+  }, [utilitySearch]);
   const [showSideNav, setShowSideNav] = useState(false);
   const iconsize = "1.5rem";
   const navItems = [
