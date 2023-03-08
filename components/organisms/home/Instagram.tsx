@@ -57,7 +57,7 @@ export function Instagram(props: IInstagramProps) {
   return (
     <div className="py-40">
       <h1 className="text-4xl text-center  font-bold">Instagram</h1>
-      <div className="pt-8 grid grid-cols-[repeat(3,33%)] gap-y-1 gap-x-1 justify-between w-[20rem] mx-auto sm:grid-cols-[repeat(5,20%)] sm:w-[35rem] md:w-[40rem] md:grid-cols-[repeat(6,18%)] md">
+      <div className="pt-8 grid grid-cols-[repeat(3,33%)] gap-y-1 gap-x-1 justify-between w-[20rem] mx-auto sm:grid-cols-[repeat(5,20%)] sm:w-[35rem] md:w-[40rem] md:grid-cols-[repeat(6,16%)] ">
         {pictures.map((item, index) => {
           return (
             <div className="w-[100%] relative border h-[5rem] sm:h-[6rem] md:h-[7rem]">

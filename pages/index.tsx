@@ -3,10 +3,12 @@ import Image from "next/image";
 import { useSelector } from "react-redux";
 import { Layout } from "@/components/templates/Layout";
 import hero from "../assets/home/hero.jpg";
+// import video from "../assets/home/video.mp4";
 import { Button } from "@/components/atoms/Button";
 import { OurProducts } from "@/components/organisms/home/OurProducts";
 import { EventPromotion } from "@/components/organisms/home/EventPromotion";
 import { Instagram } from "@/components/organisms/home/Instagram";
+import ReactPlayer from "react-player";
 export default function Home() {
   const { username } = useSelector((state: any) => state.user);
   console.log(username);
@@ -30,6 +32,15 @@ export default function Home() {
         <OurProducts />
         <EventPromotion />
         <Instagram />
+        <div className="my-10">
+          <video
+            src={require("../assets/home/video.mp4")}
+            className=" mx-auto h-[20rem] w-[full] md:h-[40rem] "
+            autoPlay
+            loop
+            muted
+          />
+        </div>
       </Layout>
     </>
   );
