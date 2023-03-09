@@ -75,7 +75,7 @@ export default function Index(props: IIndexProps) {
           onClick={() => setLoading(true)}
           className="mt-8 rounded-md   mx-auto h-[3rem] text-md w-[18rem] shadow-lg"
         >
-          <Button animate={true} loading={false} text="Sign in" />
+          <Button animate={true} loading={loading} text="Sign in" />
         </div>
 
         <div className="mt-8 text-center">
