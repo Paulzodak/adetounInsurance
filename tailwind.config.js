@@ -11,6 +11,7 @@ module.exports = {
         borderGrey: "#DEE1E6FF",
         textGrey: "#BCC1CAFF",
         btnGreen: " #459D7AFF",
+        bgGrey: "#F3F4F6FF",
       },
       fontFamily: {
         inter: ["'Inter', sans-serif"],
@@ -21,5 +22,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/forms")],
 };

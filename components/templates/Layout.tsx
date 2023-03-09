@@ -23,10 +23,16 @@ export function Layout(props: any) {
   const iconsize = "1.5rem";
   const navItems = [
     {
-      name: "Shop",
-      icon: <ShopIcon size={iconsize} color="inherit" />,
+      name: "Home",
+      icon: <BlogIcon size={iconsize} />,
       route: "/",
       query: "/",
+    },
+    {
+      name: "Shop",
+      icon: <ShopIcon size={iconsize} color="inherit" />,
+      route: "/shop",
+      query: "/shop",
     },
     {
       name: "Offers",
@@ -39,12 +45,6 @@ export function Layout(props: any) {
       icon: <SettingsIcon size={iconsize} />,
       route: "/settings",
       query: "/settings",
-    },
-    {
-      name: "Blog",
-      icon: <BlogIcon size={iconsize} />,
-      route: "/blog",
-      query: "/blog",
     },
   ];
   const FooterItems = [
