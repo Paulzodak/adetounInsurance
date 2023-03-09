@@ -10,11 +10,13 @@ import { FcGoogle as GoogleIcon } from "react-icons/fc";
 import { BsFacebook as FacebookIcon } from "react-icons/bs";
 import { BsApple as AppleIcon } from "react-icons/bs";
 import { useRouter } from "next/router";
+import { useState } from "react";
 export interface IIndexProps {}
 
 export default function Index(props: IIndexProps) {
   const router = useRouter();
   const iconSize = "1.1rem";
+  const [loading, setLoading] = useState(false);
   const otherLogin = [
     {
       image: google,
@@ -69,8 +71,11 @@ export default function Index(props: IIndexProps) {
           </div>
           <div className="text-btnGreen">Forgot password?</div>
         </div>
-        <div className="mt-8 rounded-md   mx-auto h-[3rem] text-md w-[18rem] shadow-lg">
-          <Button text="Sign in" />
+        <div
+          onClick={() => setLoading(true)}
+          className="mt-8 rounded-md   mx-auto h-[3rem] text-md w-[18rem] shadow-lg"
+        >
+          <Button animate={true} loading={false} text="Sign in" />
         </div>
 
         <div className="mt-8 text-center">

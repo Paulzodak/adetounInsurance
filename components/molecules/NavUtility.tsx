@@ -33,7 +33,7 @@ export function NavUtility(props: any) {
           onClick={() => router.push("/auth/login")}
           className="hidden h-10 sm:block mt-[-0.3rem] "
         >
-          <Button text="Login/Signup"></Button>
+          <Button animate={false} loading={false} text="Login/Signup"></Button>
         </div>
 
         {/* <UserIcon size={iconSize} /> */}

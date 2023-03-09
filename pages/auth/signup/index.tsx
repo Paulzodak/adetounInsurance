@@ -10,11 +10,13 @@ import { FcGoogle as GoogleIcon } from "react-icons/fc";
 import { BsFacebook as FacebookIcon } from "react-icons/bs";
 import { BsApple as AppleIcon } from "react-icons/bs";
 import { useRouter } from "next/router";
+import { useState } from "react";
 export interface IIndexProps {}
 
 export default function Index(props: IIndexProps) {
   const router = useRouter();
   const iconSize = "1.1rem";
+  const [loading, setLoading] = useState(false);
   const otherLogin = [
     {
       image: google,
@@ -62,8 +64,11 @@ export default function Index(props: IIndexProps) {
             placeholder="Enter at least 8+ characters "
           />
         </div>
-        <div className="mt-8 rounded-md  mx-auto h-[3rem] text-md w-[18rem] shadow-lg">
-          <Button text="Sign Up" />
+        <div
+          onClick={() => setLoading(true)}
+          className="mt-8 rounded-md  mx-auto h-[3rem] text-md w-[18rem] shadow-lg"
+        >
+          <Button animate={true} loading={loading} text="Sign Up" />
         </div>
         <div className="mt-8 text-center">
           <p className="">Or sign up with</p>
