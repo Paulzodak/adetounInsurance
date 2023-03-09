@@ -5,11 +5,12 @@ import { FaRegUser as UserIcon } from "react-icons/fa";
 import user from "../../assets/navbar/user.png";
 import Image from "next/image";
 import { Button } from "../atoms/Button";
+import { useRouter } from "next/router";
 export interface INavUtilityProps {}
 
 export function NavUtility(props: any) {
   const iconSize = "1.5rem";
-
+  const router = useRouter();
   return (
     <div className=" grid grid-cols-[auto_auto] ">
       <div className=" w-[8rem] md:w-[15rem] mt-[0.6rem] ">
@@ -28,7 +29,10 @@ export function NavUtility(props: any) {
           <Image className="rounded-full" src={user} alt={"user"} fill />
         </div>
 
-        <div className="hidden h-10 sm:block mt-[-0.3rem] ">
+        <div
+          onClick={() => router.push("/auth/login")}
+          className="hidden h-10 sm:block mt-[-0.3rem] "
+        >
           <Button text="Login/Signup"></Button>
         </div>
 

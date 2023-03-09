@@ -9,9 +9,11 @@ import Image from "next/image";
 import { FcGoogle as GoogleIcon } from "react-icons/fc";
 import { BsFacebook as FacebookIcon } from "react-icons/bs";
 import { BsApple as AppleIcon } from "react-icons/bs";
+import { useRouter } from "next/router";
 export interface IIndexProps {}
 
 export default function Index(props: IIndexProps) {
+  const router = useRouter();
   const iconSize = "1.1rem";
   const otherLogin = [
     {
@@ -32,15 +34,25 @@ export default function Index(props: IIndexProps) {
   ];
   return (
     <section className="">
-      <div></div>
+      <div className="text-sm text-right m-4">
+        Don't have an account? &nbsp;
+        <button
+          onClick={() => {
+            router.push("/auth/signup");
+          }}
+          className="text-btnGreen underline"
+        >
+          Sign up
+        </button>
+      </div>
       <div className="mx-auto w-[90%] bg-white h-[20rem] mt-[10vh] lg:shadow-lg lg:rounded-2xl pt-10">
         <h1 className="text-center font-bold text-2xl">Sign in</h1>
         {/*  */}
-        <div className="mt-8 bg-bgGrey rounded-md  mx-auto h-15 w-[18rem] grid-rows-2 px-2">
+        <div className="mt-8 bg-bgGrey rounded-md  mx-auto h-15 w-[18rem] grid-rows-2 px-4 py-2">
           <InputField name="Email" placeholder="example@gmail.com" />
         </div>
         {/*  */}
-        <div className="mt-8 bg-bgGrey rounded-md  mx-auto h-15 w-[18rem] grid-rows-2 px-2">
+        <div className="mt-8 bg-bgGrey rounded-md  mx-auto h-15 w-[18rem] grid-rows-2 px-4 py-2">
           <InputField
             name="Password"
             placeholder="Enter at least 8+ characters "
