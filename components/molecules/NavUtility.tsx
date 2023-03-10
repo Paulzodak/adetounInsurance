@@ -11,10 +11,16 @@ export interface INavUtilityProps {}
 export function NavUtility(props: any) {
   const iconSize = "1.5rem";
   const router = useRouter();
+  const searchRouteHandler = ({ show }: any) => {
+    router.push("/search");
+  };
   return (
     <div className=" grid grid-cols-[auto_auto] ">
       <div className=" w-[8rem] md:w-[15rem] mt-[0.6rem] ">
-        <Search placeholder={"Search product..."} />
+        <Search
+          searchRouteHandler={searchRouteHandler}
+          placeholder={"Search product..."}
+        />
       </div>
       <div className=" grid grid-cols-[auto_auto_auto_auto] pt-[1rem]">
         <div className="relative">

@@ -16,9 +16,7 @@ export interface ILayoutProps {}
 export function Layout(props: any) {
   const router = useRouter();
   const { utilitySearch } = useSelector((state: any) => state.utilities);
-  useEffect(() => {
-    utilitySearch.length > 0 && router.push("/search");
-  }, [utilitySearch]);
+
   const [showSideNav, setShowSideNav] = useState(false);
   const iconsize = "1.5rem";
   const navItems = [

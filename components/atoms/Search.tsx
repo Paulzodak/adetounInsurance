@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setUtilitySearch } from "@/redux/slices/utilitySlice";
 export interface ISearchProps {
   placeholder: string;
+  searchRouteHandler: Function;
 }
 
 export function Search(props: ISearchProps) {
@@ -17,6 +18,12 @@ export function Search(props: ISearchProps) {
     <div className="relative">
       <input
         onChange={handler}
+        onBlur={() => {
+          props.searchRouteHandler(false);
+        }}
+        onFocus={() => {
+          props.searchRouteHandler(true);
+        }}
         className="border-borderGrey border-[2px] rounded-md h-10 w-full pl-8 sm:pl-10 placeholder:text-md truncate placeholder:text-textGrey text-textGrey "
         placeholder={props.placeholder}
       />
