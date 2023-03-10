@@ -40,7 +40,11 @@ export function EventPromotion(props: any) {
                   Pariatur ad nisi ex tempor ea dolor
                 </p>
                 <div className="w-[6rem] h-[2rem]">
-                  <Button text="Explore"></Button>
+                  <Button
+                    animate={false}
+                    loading={false}
+                    text="Explore"
+                  ></Button>
                 </div>
               </div>
             </div>

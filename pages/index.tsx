@@ -25,7 +25,7 @@ export default function Home() {
               Fashion label luxury essentials for your skin
             </div>
             <div className="w-[7rem] sm:w-40 mt-4 h-10">
-              <Button text="Shop now"></Button>
+              <Button animate={false} loading={false} text="Shop now"></Button>
             </div>
           </div>
         </div>
