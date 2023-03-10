@@ -10,78 +10,13 @@ export interface ISearchProps {}
 
 export default function Search(props: any) {
   const { utilitySearch } = useSelector((state: any) => state.utilities);
-  const dummyProducts = [
-    {
-      name: "Perfume",
-      desc: "",
-      discount: 10,
-      tag: "Best-sellers",
-      image: perfume,
-      price: 32,
-    },
-    {
-      name: "Perfume",
-      desc: "",
-      discount: 10,
-      tag: "Best-sellers",
-      image: perfume,
-      price: 32,
-    },
-    {
-      name: "Beard Oil",
-      desc: "",
-      price: 22,
-      discount: 10,
-      tag: "Best-sellers",
-      image: beardoil,
-    },
-    {
-      name: "Beard Oil",
-      desc: "",
-      price: 22,
-      discount: 10,
-      tag: "Best-sellers",
-      image: beardoil,
-    },
-    {
-      name: "Fast Beard Oil",
-      desc: "",
-      price: 18,
-      discount: 10,
-      tag: "New-products",
-      image: beardoil2,
-    },
-    {
-      name: "Fast Beard Oil",
-      desc: "",
-      price: 18,
-      discount: 10,
-      tag: "New-products",
-      image: beardoil2,
-    },
-    {
-      name: "Deodorant",
-      desc: "",
-      price: 48,
-      discount: 10,
-      tag: "New-products",
-      image: deodorant,
-    },
-    {
-      name: "Deodorant",
-      desc: "",
-      price: 48,
-      discount: 10,
-      tag: "New-products",
-      image: deodorant,
-    },
-  ];
+  const { products } = useSelector((state: any) => state.products);
 
   return (
     <Layout>
       <div className="my-10">
         <ProductList
-          products={dummyProducts.filter((item: any) =>
+          products={products.filter((item: any) =>
             item.name.toLowerCase().includes(utilitySearch.toLowerCase())
           )}
         />

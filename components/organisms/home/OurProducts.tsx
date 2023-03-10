@@ -1,78 +1,11 @@
 import * as React from "react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { ProductList } from "@/components/molecules/product/ProductsList";
-import deodorant from "../../../assets/products/deodorant.jpeg";
-import beardoil from "../../../assets/products/nora_beard_oil.jpeg";
-import beardoil2 from "../../../assets/products/nora_beard_oil_2.jpeg";
-import perfume from "../../../assets/products/nora_perfume.jpeg";
 export interface IOurProductsProps {}
 export function OurProducts(props: IOurProductsProps) {
-  const dummyProducts = [
-    {
-      name: "Perfume",
-      desc: "",
-      discount: 10,
-      tag: "Best-sellers",
-      image: perfume,
-      price: 32,
-    },
-    {
-      name: "Perfume",
-      desc: "",
-      discount: 10,
-      tag: "Best-sellers",
-      image: perfume,
-      price: 32,
-    },
-    {
-      name: "Beard Oil",
-      desc: "",
-      price: 22,
-      discount: 10,
-      tag: "Best-sellers",
-      image: beardoil,
-    },
-    {
-      name: "Beard Oil",
-      desc: "",
-      price: 22,
-      discount: 10,
-      tag: "Best-sellers",
-      image: beardoil,
-    },
-    {
-      name: "Fast Beard Oil",
-      desc: "",
-      price: 18,
-      discount: 10,
-      tag: "New-products",
-      image: beardoil2,
-    },
-    {
-      name: "Fast Beard Oil",
-      desc: "",
-      price: 18,
-      discount: 10,
-      tag: "New-products",
-      image: beardoil2,
-    },
-    {
-      name: "Deodorant",
-      desc: "",
-      price: 48,
-      discount: 10,
-      tag: "New-products",
-      image: deodorant,
-    },
-    {
-      name: "Deodorant",
-      desc: "",
-      price: 48,
-      discount: 10,
-      tag: "New-products",
-      image: deodorant,
-    },
-  ];
+  const { products } = useSelector((state: any) => state.products);
+
   const dummyFilters = [
     {
       name: "Best-sellers",
@@ -118,7 +51,7 @@ export function OurProducts(props: IOurProductsProps) {
       </div>
       <div className="mt-10  ">
         <ProductList
-          products={dummyProducts.filter(
+          products={products.filter(
             (item: any) => item.tag === filterHeader[0].name
           )}
         />

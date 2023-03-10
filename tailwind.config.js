@@ -17,8 +17,14 @@ module.exports = {
         inter: ["'Inter', sans-serif"],
       },
       backgroundImage: {
-        hero: "url('../assets/home/hero.jpg')",
+        hero: "url('/assets/home/hero.jpg')",
+        shopHero: "url('/assets/shop/hero.jpg')",
         // "footer-texture": "url('/img/footer-texture.png')",
+      },
+      spacing: {
+        fluidWidth: "20rem",
+        fluidWidthSm: "35rem",
+        fluidWidthMd: "40rem",
       },
     },
   },
