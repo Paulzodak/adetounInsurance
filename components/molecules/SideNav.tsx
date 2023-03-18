@@ -2,14 +2,18 @@ import * as React from "react";
 import { TfiClose as CloseBtn } from "react-icons/tfi";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import user from "../../assets/navbar/user.png";
+import userImage from "../../assets/navbar/user.png";
 import { CiSettings as SettingsIcon } from "react-icons/ci";
 import { useRouter } from "next/router";
 import { Button } from "../atoms/Button";
+import { useSelector } from "react-redux";
+import useAutoCapitalize from "@/hooks/useAutoCapitalize";
 export interface ISideNavProps {}
 
 export function SideNav(props: any) {
   const router = useRouter();
+  const { user } = useSelector((state: any) => state.user);
+  const username = useAutoCapitalize(user.fullname);
   const container = {
     hidden: {
       opacity: 0,
@@ -48,12 +52,14 @@ export function SideNav(props: any) {
           />
         </motion.div>
       )}
-      <div
-        onClick={() => router.push("/auth/login")}
-        className="w-[25%] m-5 h-10"
-      >
-        <Button animate={false} loading={false} text="Login/Sign"></Button>
-      </div>
+      {!user.fullname && (
+        <div
+          onClick={() => router.push("/auth/login")}
+          className="w-[25%] m-5 h-10"
+        >
+          <Button animate={false} loading={false} text="Login/Sign"></Button>
+        </div>
+      )}
       <motion.div
         variants={container}
         initial="hidden"
@@ -83,10 +89,12 @@ export function SideNav(props: any) {
       </motion.div>
       <div className=" w-full absolute bottom-0 py-2 grid grid-cols-[1fr_4fr_1fr] border-t-2">
         <div className="w-11 h-11 relative mx-4  rounded-full shadow-md border">
-          <Image className="rounded-full" src={user} alt={"user"} fill />
+          <Image className="rounded-full" src={userImage} alt={"user"} fill />
         </div>
         <div className="">
-          <h1 className="text-lg font-bold">User</h1>
+          <h1 className="text-lg font-bold">
+            {user.fullname ? username : "User"}
+          </h1>
           <h4 className="text-sm">View profile</h4>
         </div>
         <SettingsIcon size="1.5rem" className="mx-auto mt-2" />

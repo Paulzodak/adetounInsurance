@@ -11,6 +11,8 @@ export interface IIndexProps {}
 export default function Index(props: any) {
   const { utilitySearch } = useSelector((state: any) => state.utilities);
   const { products } = useSelector((state: any) => state.products);
+  const { user } = useSelector((state: any) => state.user);
+  console.log(user);
   console.log(products);
 
   const dummyFilters = [

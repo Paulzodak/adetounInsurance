@@ -10,13 +10,37 @@ import { FcGoogle as GoogleIcon } from "react-icons/fc";
 import { BsFacebook as FacebookIcon } from "react-icons/bs";
 import { BsApple as AppleIcon } from "react-icons/bs";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import { Toast } from "@/utils/global";
+import { BASEURL } from "@/utils/global";
 export interface IIndexProps {}
-
 export default function Index(props: IIndexProps) {
   const router = useRouter();
+  const dispatch = useDispatch();
   const iconSize = "1.1rem";
   const [loading, setLoading] = useState(false);
+  const [inputs, setInputs] = useState<any>({
+    fullname: "",
+    email: "",
+    password: "",
+  });
+  const [inputIsValid, setInputIsValid] = useState<any>({
+    fullname: true,
+    email: true,
+    password: true,
+    formIsValid: false,
+  });
+  useEffect(() => {
+    inputs.password.length > 7,
+      inputs.fullname.length > 4,
+      inputs.email.length > 4 &&
+        inputs.email.includes("@") &&
+        inputs.email.includes(".com") &&
+        console.log("true");
+  }, [inputs]);
+
   const otherLogin = [
     {
       image: google,
@@ -34,6 +58,66 @@ export default function Index(props: IIndexProps) {
       bg: "bg-neutral-100",
     },
   ];
+  const setInputsHandler = (name: string, value: any) => {
+    setInputs((prev: any) => {
+      const temp = { ...prev };
+      temp[name] = value;
+      return temp;
+    });
+  };
+  const setInputIsValidHandler = (name: string, value: any) => {
+    setInputIsValid((prev: any) => {
+      const temp = { ...prev };
+      temp[name] = value;
+      return temp;
+    });
+  };
+  const nameHandler = (value: any) => {
+    setInputsHandler("fullname", value);
+    console.log(inputs.fullname.length < 4);
+    inputs.fullname.length < 4
+      ? setInputIsValidHandler("fullname", false)
+      : setInputIsValidHandler("fullname", true);
+  };
+  const emailHandler = (value: any) => {
+    setInputsHandler("email", value);
+    inputs.email.length > 4 &&
+    inputs.email.includes("@") &&
+    inputs.email.includes(".com")
+      ? setInputIsValidHandler("email", true)
+      : setInputIsValidHandler("email", false);
+  };
+  const passwordHandler = (value: any) => {
+    setInputsHandler("password", value);
+    inputs.password.length > 7
+      ? setInputIsValidHandler("password", false)
+      : setInputIsValidHandler("password", true);
+  };
+  console.log(inputIsValid);
+  console.log(inputs);
+  const signup = () => {
+    axios
+      .post(`${BASEURL}/user/signup`, {
+        fullname: inputs.fullname,
+        email: inputs.email,
+        password: inputs.password,
+      })
+      .then((res) => {
+        setLoading(false);
+        Toast.fire({
+          icon: "success",
+          title: "Signed up successfully, Proceed to login",
+        });
+        router.push("/auth/login");
+      })
+      .catch((err) => {
+        Toast.fire({
+          icon: "error",
+          title: "Error",
+        });
+        setLoading(false);
+      });
+  };
   return (
     <section className="">
       <div className="text-sm text-right m-4">
@@ -50,22 +134,64 @@ export default function Index(props: IIndexProps) {
       <div className="mx-auto w-[90%] bg-white h-[20rem] mt-[10vh] lg:shadow-lg lg:rounded-2xl pt-10">
         <h1 className="text-center font-bold text-2xl">Create an account</h1>
         {/*  */}
-        <div className="mt-8 bg-bgGrey rounded-md  mx-auto h-15 w-[18rem] grid-rows-2 px-4 py-2">
-          <InputField name="Full name" placeholder="John Doe" />
-        </div>
-        {/*  */}
-        <div className="mt-8 bg-bgGrey rounded-md  mx-auto h-15 w-[18rem] grid-rows-2 px-4 py-2">
-          <InputField name="Email" placeholder="example@gmail.com" />
-        </div>
-        {/*  */}
-        <div className="mt-8 bg-bgGrey rounded-md  mx-auto h-15 w-[18rem] grid-rows-2 px-4 py-2">
+        <div
+          // onFocus={nameHandler}
+          onBlur={() => {
+            inputs.fullname.length > 1
+              ? setInputIsValidHandler("fullname", true)
+              : setInputIsValidHandler("fullname", false);
+          }}
+          className={`mt-8 bg-bgGrey rounded-md  mx-auto h-15 w-[18rem] grid-rows-2 px-4 py-2 ${
+            !inputIsValid.fullname && "border border-[red]"
+          } `}
+        >
           <InputField
+            setInput={nameHandler}
+            name="Full name"
+            placeholder="John Doe"
+          />
+        </div>
+        {/*  */}
+        <div
+          className={`mt-8 bg-bgGrey rounded-md  mx-auto h-15 w-[18rem] grid-rows-2 px-4 py-2 ${
+            !inputIsValid.email && "border border-[red]"
+          } `}
+          onBlur={() => {
+            inputs.email.length > 4 &&
+            inputs.email.includes("@") &&
+            inputs.email.includes(".com")
+              ? setInputIsValidHandler("email", true)
+              : setInputIsValidHandler("email", false);
+          }}
+        >
+          <InputField
+            setInput={emailHandler}
+            name="Email"
+            placeholder="example@gmail.com"
+          />
+        </div>
+        {/*  */}
+        <div
+          onBlur={() => {
+            inputs.password.length > 7
+              ? setInputIsValidHandler("password", true)
+              : setInputIsValidHandler("password", false);
+          }}
+          className={`mt-8 bg-bgGrey rounded-md  mx-auto h-15 w-[18rem] grid-rows-2 px-4 py-2 ${
+            !inputIsValid.password && "border border-[red]"
+          } `}
+        >
+          <InputField
+            setInput={passwordHandler}
             name="Password"
             placeholder="Enter at least 8+ characters "
           />
         </div>
         <div
-          onClick={() => setLoading(true)}
+          onClick={() => {
+            setLoading(true);
+            signup();
+          }}
           className="mt-8 rounded-md  mx-auto h-[3rem] text-md w-[18rem] shadow-lg"
         >
           <Button animate={true} loading={loading} text="Sign Up" />
