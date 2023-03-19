@@ -99,26 +99,29 @@ export function Layout(props: any) {
     <div>
       <AnimatePresence>
         {showSideNav && (
+          // <div className="top-0 fixed z-20 w-[100vw] h-[100vh] backdrop-blur-sm">
           <motion.div
-            initial={{ x: -800 }}
+            initial={{ x: -500 }}
             animate={{
               x: 0,
 
               // transition: { duration: 1 },
               transition: {
                 type: "spring",
+                // duration: 200,
                 stiffness: 200,
                 damping: 40,
                 mass: 2,
               },
             }}
             exit={{
-              x: -800,
+              x: -500,
               transition: {
+                // duration: 200,
                 type: "spring",
-                stiffness: 200,
+                stiffness: 1000,
                 damping: 40,
-                mass: 2,
+                mass: 1,
               },
             }}
             className="fixed w-screen  sm:w-[50%] h-screen overflow-hidden bg-[white] z-10 border lg:hidden"

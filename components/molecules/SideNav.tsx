@@ -43,7 +43,7 @@ export function SideNav(props: any) {
             },
           }}
           exit={{ rotate: -180 }}
-          className="relative float-right m-5 "
+          className="relative float-right m-5  "
         >
           <CloseBtn
             onClick={() => props.setShowSideNav(false)}
@@ -87,7 +87,7 @@ export function SideNav(props: any) {
           );
         })}
       </motion.div>
-      <div className=" w-full absolute bottom-0 py-2 grid grid-cols-[1fr_4fr_1fr] border-t-2">
+      <div className=" w-full absolute bottom-[7rem] py-2 grid grid-cols-[1fr_4fr_1fr] ">
         <div className="w-11 h-11 relative mx-4  rounded-full shadow-md border">
           <Image className="rounded-full" src={userImage} alt={"user"} fill />
         </div>
@@ -99,6 +99,7 @@ export function SideNav(props: any) {
         </div>
         <SettingsIcon size="1.5rem" className="mx-auto mt-2" />
       </div>
+      <hr className="border absolute bottom-[4rem] w-[90%] mx-[5%]" />
     </>
   );
 }
