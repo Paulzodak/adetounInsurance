@@ -96,6 +96,7 @@ export default function Index(props: IIndexProps) {
   console.log(inputIsValid);
   console.log(inputs);
   const signup = () => {
+    console.log("i ran");
     axios
       .post(`${BASEURL}/user/signup`, {
         fullname: inputs.fullname,
