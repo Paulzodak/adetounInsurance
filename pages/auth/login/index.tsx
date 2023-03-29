@@ -17,6 +17,7 @@ import { useDispatch } from "react-redux";
 import { Toast } from "@/utils/global";
 import { useJwt } from "react-jwt";
 import { setUser } from "@/redux/slices/userSlice";
+import AuthLayout from "@/components/templates/AuthLayout";
 export interface IIndexProps {}
 
 export default function Index(props: IIndexProps) {
@@ -37,8 +38,8 @@ export default function Index(props: IIndexProps) {
   });
   console.log(inputs);
   const [inputIsValid, setInputIsValid] = useState<any>({
-    email: true,
-    password: true,
+    email: false,
+    password: false,
     formIsValid: false,
   });
   const otherLogin = [
@@ -74,44 +75,44 @@ export default function Index(props: IIndexProps) {
   };
   const emailHandler = (value: any) => {
     setInputsHandler("email", value);
-    inputs.email.length > 4 &&
-    inputs.email.includes("@") &&
-    inputs.email.includes(".com")
+    value.length > 4 && value.includes("@") && value.includes(".com")
       ? setInputIsValidHandler("email", true)
       : setInputIsValidHandler("email", false);
   };
   const passwordHandler = (value: any) => {
     setInputsHandler("password", value);
-    inputs.password.length > 7
-      ? setInputIsValidHandler("password", false)
-      : setInputIsValidHandler("password", true);
+    value.length > 7
+      ? setInputIsValidHandler("password", true)
+      : setInputIsValidHandler("password", false);
   };
   const login = () => {
-    axios
-      .post(`${BASEURL}/user/fetchUser`, {
-        email: inputs.email,
-        password: inputs.password,
-      })
-      .then((res) => {
-        console.log(res);
-        if (res.data.user) {
-          setToken(res.data.user);
-        }
-        setLoading(false);
-        Toast.fire({
-          icon: "success",
-          title: "Signed in successfully",
+    if (inputIsValid.email && inputIsValid.password) {
+      axios
+        .post(`${BASEURL}/user/fetchUser`, {
+          email: inputs.email,
+          password: inputs.password,
+        })
+        .then((res) => {
+          console.log(res);
+          if (res.data.user) {
+            setToken(res.data.user);
+          }
+          setLoading(false);
+          Toast.fire({
+            icon: "success",
+            title: "Signed in successfully",
+          });
+          router.push("/shop");
+        })
+        .catch((err) => {
+          console.log(err);
+          Toast.fire({
+            icon: "error",
+            title: "Error",
+          });
+          setLoading(false);
         });
-        router.push("/shop");
-      })
-      .catch((err) => {
-        console.log(err);
-        Toast.fire({
-          icon: "error",
-          title: "Error",
-        });
-        setLoading(false);
-      });
+    }
   };
   return (
     <section className="">
@@ -126,87 +127,94 @@ export default function Index(props: IIndexProps) {
           Sign up
         </button>
       </div>
-      <div className="mx-auto w-[90%] bg-white h-[20rem] mt-[10vh] lg:shadow-lg lg:rounded-2xl pt-10">
-        <h1 className="text-center font-bold text-2xl">Sign in</h1>
-        {/*  */}
-        <div
-          onBlur={() => {
-            inputs.email.length > 4 &&
-            inputs.email.includes("@") &&
-            inputs.email.includes(".com")
-              ? setInputIsValidHandler("email", true)
-              : setInputIsValidHandler("email", false);
-          }}
-          className={`mt-8 bg-bgGrey rounded-md  mx-auto h-15 w-[18rem] grid-rows-2 px-4 py-2 ${
-            !inputIsValid.email && "border border-[red]"
-          } `}
-        >
-          <InputField
-            setInput={emailHandler}
-            name="Email"
-            placeholder="example@gmail.com"
-          />
-        </div>
-        {/*  */}
-        <div
-          onBlur={() => {
-            inputs.password.length > 7
-              ? setInputIsValidHandler("password", true)
-              : setInputIsValidHandler("password", false);
-          }}
-          className={`mt-8 bg-bgGrey rounded-md  mx-auto h-15 w-[18rem] grid-rows-2 px-4 py-2 ${
-            !inputIsValid.password && "border border-[red]"
-          } `}
-        >
-          <InputField
-            setInput={passwordHandler}
-            name="Password"
-            placeholder="Enter at least 8+ characters "
-          />
-        </div>
-        {/*  */}
-        <div className=" grid grid-cols-[auto_auto] justify-between w-[18rem] mx-auto text-xs mt-4">
-          <div className="grid grid-cols-[auto_auto] gap-x-2 justify-between">
-            <input
-              type="checkbox"
-              className=" checked:bg-btnGreen rounded-sm focus:ring-0 "
+      <AuthLayout>
+        <div className="mx-auto w-[90%] bg-white h-[20rem]">
+          <h1 className="text-center font-bold text-2xl">Sign in</h1>
+          {/*  */}
+          <div
+            // onBlur={() => {
+            //   inputs.email.length > 4 &&
+            //   inputs.email.includes("@") &&
+            //   inputs.email.includes(".com")
+            //     ? setInputIsValidHandler("email", true)
+            //     : setInputIsValidHandler("email", false);
+            // }}
+            className={`mt-8 mx-auto h-[4rem] w-[18rem] `}
+          >
+            <InputField
+              setInput={emailHandler}
+              inputIsValid={inputIsValid.email}
+              name="Email"
+              placeholder="example@gmail.com"
             />
-            <p>Keep me logged in</p>
           </div>
-          <div className="text-btnGreen">Forgot password?</div>
-        </div>
-        <div
-          onClick={() => {
-            login();
-            setLoading(true);
-          }}
-          className="mt-8 rounded-md   mx-auto h-[3rem] text-md w-[18rem] shadow-lg"
-        >
-          <Button animate={true} loading={loading} text="Sign in" />
-        </div>
+          {/*  */}
+          <div
+            // onBlur={() => {
+            //   inputs.password.length > 7
+            //     ? setInputIsValidHandler("password", true)
+            //     : setInputIsValidHandler("password", false);
+            // }}
+            className={`mt-8 mx-auto h-[4rem] w-[18rem] `}
+          >
+            <InputField
+              setInput={passwordHandler}
+              inputIsValid={inputIsValid.password}
+              name="Password"
+              placeholder="Enter at least 8+ characters "
+            />
+          </div>
+          {/*  */}
+          <div className=" grid grid-cols-[auto_auto] justify-between w-[18rem] mx-auto text-xs mt-4">
+            <div className="grid grid-cols-[auto_auto] gap-x-2 justify-between">
+              <input
+                type="checkbox"
+                className=" checked:bg-btnGreen rounded-sm focus:ring-0 "
+              />
+              <p>Keep me logged in</p>
+            </div>
+            <div className="text-btnGreen">Forgot password?</div>
+          </div>
+          <div
+            onClick={() => {
+              login();
+              setLoading(inputIsValid.email && inputIsValid.password && true);
+            }}
+            className="mt-8 rounded-md   mx-auto h-[3rem] text-md w-[18rem] shadow-lg"
+          >
+            <Button
+              disable={
+                inputIsValid.password && inputIsValid.email ? true : false
+              }
+              animate={true}
+              loading={loading}
+              text="Sign in"
+            />
+          </div>
 
-        <div className="mt-8 text-center">
-          <p className="">Or sign in with</p>
-          <div className="grid grid-cols-3 gap-x-4 w-[15rem] mt-4  mx-auto">
-            {otherLogin.map((item: any) => {
-              return (
-                <button
-                  className={` text-center px-4 py-2  justify-between rounded-2xl ${item.bg}`}
-                >
-                  {item.icon}
-                </button>
-              );
-            })}
+          <div className="mt-8 text-center">
+            <p className="">Or sign in with</p>
+            <div className="grid grid-cols-3 gap-x-4 w-[15rem] mt-4  mx-auto">
+              {otherLogin.map((item: any) => {
+                return (
+                  <button
+                    className={` text-center px-4 py-2  justify-between rounded-2xl ${item.bg}`}
+                  >
+                    {item.icon}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
-      </div>
-      <div className="text-textGrey text-xs mx-auto w-[15rem] mt-10 relative bottom-[-12rem] mb-4">
-        By signing up, you agree with the{" "}
-        <a className="underline decoration-solid" href="">
-          Terms of Use
-        </a>{" "}
-        & <a className="underline decoration-solid">Privacy Policy</a>
-      </div>
+        {/* <div className="md:hidden text-textGrey text-xs mx-auto w-[15rem] mt-10 relative bottom-[-12rem] mb-4 ">
+          By signing up, you agree with the{" "}
+          <a className="underline decoration-solid" href="">
+            Terms of Use
+          </a>{" "}
+          & <a className="underline decoration-solid">Privacy Policy</a>
+        </div> */}
+      </AuthLayout>
     </section>
   );
 }

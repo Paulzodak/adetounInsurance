@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { Toast } from "@/utils/global";
 import { BASEURL } from "@/utils/global";
+import AuthLayout from "@/components/templates/AuthLayout";
 export interface IIndexProps {}
 export default function Index(props: IIndexProps) {
   const router = useRouter();
@@ -27,9 +28,9 @@ export default function Index(props: IIndexProps) {
     password: "",
   });
   const [inputIsValid, setInputIsValid] = useState<any>({
-    fullname: true,
-    email: true,
-    password: true,
+    fullname: false,
+    email: false,
+    password: false,
     formIsValid: false,
   });
   useEffect(() => {
@@ -74,49 +75,48 @@ export default function Index(props: IIndexProps) {
   };
   const nameHandler = (value: any) => {
     setInputsHandler("fullname", value);
-    console.log(inputs.fullname.length < 4);
-    inputs.fullname.length < 4
-      ? setInputIsValidHandler("fullname", false)
-      : setInputIsValidHandler("fullname", true);
+    value.length > 4
+      ? setInputIsValidHandler("fullname", true)
+      : setInputIsValidHandler("fullname", false);
   };
   const emailHandler = (value: any) => {
     setInputsHandler("email", value);
-    inputs.email.length > 4 &&
-    inputs.email.includes("@") &&
-    inputs.email.includes(".com")
+    value.length > 4 && value.includes("@") && value.includes(".com")
       ? setInputIsValidHandler("email", true)
       : setInputIsValidHandler("email", false);
   };
   const passwordHandler = (value: any) => {
     setInputsHandler("password", value);
-    inputs.password.length > 7
-      ? setInputIsValidHandler("password", false)
-      : setInputIsValidHandler("password", true);
+    value.length > 7
+      ? setInputIsValidHandler("password", true)
+      : setInputIsValidHandler("password", false);
   };
   console.log(inputIsValid);
   console.log(inputs);
   const signup = () => {
-    axios
-      .post(`${BASEURL}/user/signup`, {
-        fullname: inputs.fullname,
-        email: inputs.email,
-        password: inputs.password,
-      })
-      .then((res) => {
-        setLoading(false);
-        Toast.fire({
-          icon: "success",
-          title: "Signed up successfully, Proceed to login",
+    if (inputIsValid.fullname && inputIsValid.email && inputIsValid.password) {
+      axios
+        .post(`${BASEURL}/user/signup`, {
+          fullname: inputs.fullname,
+          email: inputs.email,
+          password: inputs.password,
+        })
+        .then((res) => {
+          setLoading(false);
+          Toast.fire({
+            icon: "success",
+            title: "Signed up successfully, Proceed to login",
+          });
+          router.push("/auth/login");
+        })
+        .catch((err) => {
+          Toast.fire({
+            icon: "error",
+            title: "Error",
+          });
+          setLoading(false);
         });
-        router.push("/auth/login");
-      })
-      .catch((err) => {
-        Toast.fire({
-          icon: "error",
-          title: "Error",
-        });
-        setLoading(false);
-      });
+    }
   };
   return (
     <section className="">
@@ -131,93 +131,108 @@ export default function Index(props: IIndexProps) {
           Login
         </button>
       </div>
-      <div className="mx-auto w-[90%] bg-white h-[20rem] mt-[10vh] lg:shadow-lg lg:rounded-2xl pt-10">
-        <h1 className="text-center font-bold text-2xl">Create an account</h1>
-        {/*  */}
-        <div
-          // onFocus={nameHandler}
-          onBlur={() => {
-            inputs.fullname.length > 1
-              ? setInputIsValidHandler("fullname", true)
-              : setInputIsValidHandler("fullname", false);
-          }}
-          className={`mt-8 bg-bgGrey rounded-md  mx-auto h-15 w-[18rem] grid-rows-2 px-4 py-2 ${
-            !inputIsValid.fullname && "border border-[red]"
-          } `}
-        >
-          <InputField
-            setInput={nameHandler}
-            name="Full name"
-            placeholder="John Doe"
-          />
-        </div>
-        {/*  */}
-        <div
-          className={`mt-8 bg-bgGrey rounded-md  mx-auto h-15 w-[18rem] grid-rows-2 px-4 py-2 ${
-            !inputIsValid.email && "border border-[red]"
-          } `}
-          onBlur={() => {
-            inputs.email.length > 4 &&
-            inputs.email.includes("@") &&
-            inputs.email.includes(".com")
-              ? setInputIsValidHandler("email", true)
-              : setInputIsValidHandler("email", false);
-          }}
-        >
-          <InputField
-            setInput={emailHandler}
-            name="Email"
-            placeholder="example@gmail.com"
-          />
-        </div>
-        {/*  */}
-        <div
-          onBlur={() => {
-            inputs.password.length > 7
-              ? setInputIsValidHandler("password", true)
-              : setInputIsValidHandler("password", false);
-          }}
-          className={`mt-8 bg-bgGrey rounded-md  mx-auto h-15 w-[18rem] grid-rows-2 px-4 py-2 ${
-            !inputIsValid.password && "border border-[red]"
-          } `}
-        >
-          <InputField
-            setInput={passwordHandler}
-            name="Password"
-            placeholder="Enter at least 8+ characters "
-          />
-        </div>
-        <div
-          onClick={() => {
-            setLoading(true);
-            signup();
-          }}
-          className="mt-8 rounded-md  mx-auto h-[3rem] text-md w-[18rem] shadow-lg"
-        >
-          <Button animate={true} loading={loading} text="Sign Up" />
-        </div>
-        <div className="mt-8 text-center">
-          <p className="">Or sign up with</p>
-          <div className="grid grid-cols-3 gap-x-4 w-[15rem] mt-4  mx-auto">
-            {otherLogin.map((item: any) => {
-              return (
-                <button
-                  className={` text-center px-4 py-2  justify-between rounded-2xl ${item.bg}`}
-                >
-                  {item.icon}
-                </button>
+      <AuthLayout>
+        <div className="mx-auto w-[90%] bg-white h-[20rem]">
+          <h1 className="text-center font-bold text-2xl">Create an account</h1>
+          {/*  */}
+          <div
+            // onFocus={nameHandler}
+            // onBlur={() => {
+            //   inputs.fullname.length > 1
+            //     ? setInputIsValidHandler("fullname", true)
+            //     : setInputIsValidHandler("fullname", false);
+            // }}
+            className={`mt-8 mx-auto h-[4rem] w-[18rem] `}
+          >
+            <InputField
+              setInput={nameHandler}
+              inputIsValid={inputIsValid.fullname}
+              name="Full name"
+              placeholder="John Doe"
+            />
+          </div>
+          {/*  */}
+          <div
+            className={`mt-8 mx-auto h-[4rem] w-[18rem] `}
+            // onBlur={() => {
+            //   inputs.email.length > 4 &&
+            //   inputs.email.includes("@") &&
+            //   inputs.email.includes(".com")
+            //     ? setInputIsValidHandler("email", true)
+            //     : setInputIsValidHandler("email", false);
+            // }}
+          >
+            <InputField
+              setInput={emailHandler}
+              inputIsValid={inputIsValid.email}
+              name="Email"
+              placeholder="example@gmail.com"
+            />
+          </div>
+          {/*  */}
+          <div
+            onBlur={() => {
+              inputs.password.length > 7
+                ? setInputIsValidHandler("password", true)
+                : setInputIsValidHandler("password", false);
+            }}
+            className={`mt-8 mx-auto h-[4rem] w-[18rem] `}
+          >
+            <InputField
+              setInput={passwordHandler}
+              inputIsValid={inputIsValid.password}
+              name="Password"
+              placeholder="Enter at least 8+ characters "
+            />
+          </div>
+          <div
+            onClick={() => {
+              setLoading(
+                inputIsValid.email &&
+                  inputIsValid.password &&
+                  inputIsValid.fullname &&
+                  true
               );
-            })}
+              signup();
+            }}
+            className="mt-8 rounded-md  mx-auto h-[3rem] text-md w-[18rem] shadow-lg"
+          >
+            <Button
+              disable={
+                inputIsValid.password &&
+                inputIsValid.email &&
+                inputIsValid.fullname
+                  ? true
+                  : false
+              }
+              animate={true}
+              loading={loading}
+              text="Sign Up"
+            />
+          </div>
+          <div className="mt-8 text-center">
+            <p className="">Or sign up with</p>
+            <div className="grid grid-cols-3 gap-x-4 w-[15rem] mt-4  mx-auto">
+              {otherLogin.map((item: any) => {
+                return (
+                  <button
+                    className={` text-center px-4 py-2  justify-between rounded-2xl ${item.bg}`}
+                  >
+                    {item.icon}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+          <div className="md:hidden text-textGrey text-xs mx-auto w-[15rem] mt-10 relative bottom-[-2rem] mb-4">
+            By signing up, you agree with the{" "}
+            <a className="underline decoration-solid" href="">
+              Terms of Use
+            </a>{" "}
+            & <a className="underline decoration-solid">Privacy Policy</a>
           </div>
         </div>
-        <div className="text-textGrey text-xs mx-auto w-[15rem] mt-10 relative bottom-[-2rem] mb-4">
-          By signing up, you agree with the{" "}
-          <a className="underline decoration-solid" href="">
-            Terms of Use
-          </a>{" "}
-          & <a className="underline decoration-solid">Privacy Policy</a>
-        </div>
-      </div>
+      </AuthLayout>
     </section>
   );
 }
