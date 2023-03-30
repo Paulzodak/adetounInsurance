@@ -5,6 +5,7 @@ import productSlice from "./slices/productSlice";
 import { persistReducer, persistStore } from "redux-persist";
 import { combineReducers } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
+import session from "redux-persist/lib/storage/session";
 import thunk from "redux-thunk";
 
 const persistConfig = {
@@ -13,7 +14,7 @@ const persistConfig = {
 };
 const rootPersistConfig = {
   key: "root",
-  storage,
+  session,
   whitelist: ["user"],
 };
 const rootReducer = combineReducers({

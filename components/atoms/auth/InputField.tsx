@@ -17,9 +17,9 @@ export function InputField(props: IInputFieldProps) {
           props.setInput(e.target.value);
         }}
         placeholder={props.placeholder}
-        className={` ${
-          !props.inputIsValid ? "focus:ring-rose-200" : " focus:ring-green-200"
-        } bg-bgGrey h-full w-full outline-0 pt-8  px-4 focus:ring focus:ring-offset-2  rounded-md`}
+        className={` outline-none ${
+          !props.inputIsValid ? "focus:ring-rose-100" : " focus:ring-teal-100"
+        } bg-bgGrey h-full w-full outline-0 pt-8  px-4 focus:ring-[0.3rem] focus:ring-offset-2  rounded-md`}
       />
       {/* <Input
           setInput={props.setInput}

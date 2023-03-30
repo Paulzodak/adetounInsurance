@@ -43,6 +43,7 @@ export default function Index(props: any) {
       return temp;
     });
   };
+  console.log(filter);
   return (
     <Layout>
       <div

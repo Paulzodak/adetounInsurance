@@ -198,7 +198,7 @@ export default function Index(props: IIndexProps) {
               {otherLogin.map((item: any) => {
                 return (
                   <button
-                    className={` text-center px-4 py-2  justify-between rounded-2xl ${item.bg}`}
+                    className={`focus:ring-[0.2rem] outline-none focus:ring-teal-100 focus:ring-offset-2 text-center px-4 py-2  justify-between rounded-2xl ${item.bg}`}
                   >
                     {item.icon}
                   </button>
