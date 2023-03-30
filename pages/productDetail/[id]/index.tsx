@@ -4,7 +4,10 @@ import { Layout } from "@/components/templates/Layout";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { BsCheckCircle as DoneIcon } from "react-icons/bs";
+import { Button } from "@/components/atoms/Button";
 import Image from "next/image";
+import { BiCartDownload as CartIcon } from "react-icons/bi";
+import { ProductList } from "@/components/molecules/product/ProductsList";
 export interface IAppProps {}
 
 export default function Index(props: any) {
@@ -28,8 +31,9 @@ export default function Index(props: any) {
 
   return (
     <Layout>
-      <div className="my-20">
-        <div className="grid gap-y-16">
+      <div className="my-20 font-inter">
+        <div className="grid gap-y-16 md:grid md:grid-cols-2  ">
+          {/*  */}
           <div className=" grid gap-x-4  grid-cols-[20%_80%] h-80 mx-auto w-[18rem]">
             <div className=" grid gap-y-2 grid-rows-4">
               <div className=" relative rounded-md overflow-hidden">
@@ -50,7 +54,7 @@ export default function Index(props: any) {
             </div>
           </div>
           {/*  */}
-          <div className=" w-[18rem] mx-auto ">
+          <div className=" w-[18rem] mx-auto  md:w-[24rem] ">
             <h1 className="text-2xl font-bold">{product.name}</h1>
             <p className="mt-2">
               Aliquip fugiat ipsum nostrud ex et eu incididunt
@@ -103,8 +107,33 @@ export default function Index(props: any) {
                 +
               </button>
             </div>
+            <div className="w-full grid grid-cols-2 h-[2.5rem] mt-4 gap-x-4">
+              <button className="border border-btnGreen relative pl-6 focus:ring-[0.3rem] outline-none focus:ring-teal-100 focus:ring-offset-2   text-btnGreen rounded-md text-sm sm:text-sm md:text-md overflow-hidden z-0 ">
+                <CartIcon
+                  className="absolute left-4 top-2 md:left-10 text-btnGreen"
+                  size="1.3rem"
+                />
+                Add to bag
+              </button>
+              <Button
+                text="Checkout"
+                animate={true}
+                loading={false}
+                disable={false}
+              />
+            </div>
           </div>
         </div>
+        <section className=" mt-20  text-xl font-bold ">
+          <h1 className=" w-[20rem] mx-auto sm:w-[35rem]  md:w-[40rem]">
+            Related products
+          </h1>
+          <div className=" mt-8">
+            <ProductList
+              products={products.filter((item: any) => item.price < 30)}
+            />
+          </div>
+        </section>
       </div>
     </Layout>
   );

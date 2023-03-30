@@ -12,11 +12,10 @@ export function NavItems(props: any) {
             onClick={() => {
               router.push({
                 pathname: item.route,
-                query: { keyword: item.route },
               });
             }}
             className={`px-2 hover:border-l-4 hover:border-btnGreen cursor-pointer duration-150 ease-out text-md font-inter  ${
-              item.route === router.query.keyword &&
+              item.route === router.pathname &&
               "border-l-4 border-btnGreen text-btnGreen"
             }`}
           >

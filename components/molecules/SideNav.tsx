@@ -75,14 +75,13 @@ export function SideNav(props: any) {
           return (
             <motion.div
               className={`hover:border-l-4 hover:border-btnGreen cursor-pointer duration-150 ease-out mb-8 grid grid-cols-[0.7fr_6fr] px-2 ${
-                item.route === router.query.keyword &&
+                item.route === router.pathname &&
                 "border-l-4 border-btnGreen text-btnGreen"
               }`}
               variants={items}
               onClick={() => {
                 router.push({
                   pathname: item.route,
-                  query: { keyword: item.route },
                 });
               }}
             >

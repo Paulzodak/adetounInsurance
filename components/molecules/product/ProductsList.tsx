@@ -2,7 +2,10 @@ import * as React from "react";
 import { Product } from "./Product";
 import { useRouter } from "next/router";
 import { motion, AnimatePresence } from "framer-motion";
-export function ProductList(props: any) {
+export interface IProductListProps {
+  products: any;
+}
+export function ProductList(props: IProductListProps) {
   const router = useRouter();
   const container = {
     hidden: {
