@@ -57,7 +57,12 @@ export function SideNav(props: any) {
           onClick={() => router.push("/auth/login")}
           className="w-[25%] m-5 h-10"
         >
-          <Button animate={false} loading={false} text="Login/Sign"></Button>
+          <Button
+            disable={false}
+            animate={false}
+            loading={false}
+            text="Login/Sign"
+          ></Button>
         </div>
       )}
       <motion.div

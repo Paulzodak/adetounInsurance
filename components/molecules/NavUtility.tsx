@@ -42,6 +42,7 @@ export function NavUtility(props: any) {
             className="hidden h-10 sm:block mt-[-0.3rem] "
           >
             <Button
+              disable={false}
               animate={false}
               loading={false}
               text="Login/Signup"
