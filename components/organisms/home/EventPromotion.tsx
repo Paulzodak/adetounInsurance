@@ -41,6 +41,7 @@ export function EventPromotion(props: any) {
                 </p>
                 <div className="w-[6rem] h-[2rem]">
                   <Button
+                    disable={false}
                     animate={false}
                     loading={false}
                     text="Explore"
