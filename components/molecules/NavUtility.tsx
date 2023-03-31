@@ -33,8 +33,18 @@ export function NavUtility(props: any) {
         </div>
         <div>Cart</div>
 
-        <div className="w-7 h-7 relative mx-4  rounded-full shadow-md">
-          <Image className="rounded-full" src={userIcon} alt={"user"} fill />
+        <div
+          onClick={() => {
+            router.push("/settings");
+          }}
+          className="w-7 h-7 relative mx-4  rounded-full shadow-md border border-[white] cursor-pointer"
+        >
+          <Image
+            className="rounded-full"
+            src={user.imageUrl ? user.imageUrl : userIcon}
+            alt={"user"}
+            fill
+          />
         </div>
         {!user.fullname && (
           <div

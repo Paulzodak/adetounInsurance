@@ -91,9 +91,19 @@ export function SideNav(props: any) {
           );
         })}
       </motion.div>
-      <div className=" w-full absolute bottom-[7rem] py-2 grid grid-cols-[1fr_4fr_1fr] ">
-        <div className="w-11 h-11 relative mx-4  rounded-full shadow-md border">
-          <Image className="rounded-full" src={userImage} alt={"user"} fill />
+      <div
+        onClick={() => {
+          router.push("/settings");
+        }}
+        className=" w-full absolute bottom-[7rem] py-2 grid grid-cols-[1fr_4fr_1fr] cursor-pointer "
+      >
+        <div className="w-11 h-11 relative mx-4  rounded-full shadow-md border border-[white]">
+          <Image
+            className="rounded-full"
+            src={user.imageUrl ? user.imageUrl : userImage}
+            alt={"user"}
+            fill
+          />
         </div>
         <div className="">
           <h1 className="text-lg font-bold">

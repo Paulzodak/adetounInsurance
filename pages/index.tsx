@@ -40,7 +40,7 @@ export default function Home() {
         <div className="my-10">
           <video
             src={require("../assets/home/video.mp4")}
-            className=" mx-auto h-[22rem] sm:h-[35rem] w-[full] md:h-[49rem]  "
+            className=" mx-auto h-[22rem] sm:h-[35rem] w-[full] md:h-[49rem]"
             autoPlay
             loop
             muted

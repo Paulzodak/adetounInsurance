@@ -11,10 +11,14 @@ import { Toast } from "@/utils/global";
 import axios from "axios";
 import { BASEURL } from "@/utils/global";
 import { ClipLoader } from "react-spinners";
+import { getUser, setUser } from "@/redux/slices/userSlice";
+import { useDispatch } from "react-redux";
 export interface IIndexProps {}
 
 export default function Settings(props: any) {
+  const dispatch = useDispatch();
   const { user } = useSelector((state: any) => state.user);
+  console.log(user);
   const [image, setImage] = useState<string | ArrayBuffer | null>();
   const [loading, setLoading] = useState<boolean>(false);
   const [profileUrl, setProfileUrl] = useState<string>(
@@ -51,6 +55,9 @@ export default function Settings(props: any) {
             email: user.email,
           })
           .then((res) => {
+            // dispatch(getUser(user.email));
+            console.log(res);
+            dispatch(setUser(res.data.user));
             Toast.fire({
               icon: "success",
               title: "Profile picture updated!",
@@ -90,13 +97,13 @@ export default function Settings(props: any) {
             <div className="border-2 border-borderGrey rounded-md mt-6 mb-2 pb-4">
               <div className="relative h-[10rem] w-[10rem] mx-auto mt-2">
                 <Image
-                  src={userImage}
+                  src={user.imageUrl ? user.imageUrl : userImage}
                   fill
                   alt="user"
                   className="border-2 border-[white] rounded-full shadow-sm"
                 />
 
-                <button className="border  w-[2.5rem] h-[2.5rem] bg-btnGreen rounded-full py-[9px] px-[10px] absolute top-[7.7rem] left-[6.7rem]  z-10">
+                <button className="border  w-[2.5rem] h-[2.5rem] bg-btnGreen rounded-full py-[9px] px-[10px] absolute top-[7.7rem] left-[6.7rem] ">
                   {loading ? (
                     <ClipLoader
                       color="white"
