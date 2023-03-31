@@ -6,17 +6,20 @@ import { FaPencilAlt as PencilIcon } from "react-icons/fa";
 import { FiCopy as CopyIcon } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import useAutoCapitalize from "@/hooks/useAutoCapitalize";
-import { ClipboardEvent } from "react";
 import { useState } from "react";
 import { Toast } from "@/utils/global";
+import axios from "axios";
+import { BASEURL } from "@/utils/global";
+import { ClipLoader } from "react-spinners";
 export interface IIndexProps {}
 
 export default function Settings(props: any) {
   const { user } = useSelector((state: any) => state.user);
+  const [image, setImage] = useState<string | ArrayBuffer | null>();
+  const [loading, setLoading] = useState<boolean>(false);
   const [profileUrl, setProfileUrl] = useState<string>(
     "https://www.profilelink.com"
   );
-  console.log(user);
   const username = useAutoCapitalize(user.fullname);
   const copyToClipboard = () => {
     navigator.clipboard.writeText(profileUrl);
@@ -25,7 +28,51 @@ export default function Settings(props: any) {
       title: "Copied",
     });
   };
+  const handleFileChange = async (e: any) => {
+    setLoading(true);
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "fashion-store-image");
+    formData.append("cloud_name", "dxs8cpeae");
 
+    const response = await fetch(
+      `https://api.cloudinary.com/v1_1/dxs8cpeae/image/upload`,
+      {
+        method: "POST",
+        body: formData,
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        axios
+          .post(`${BASEURL}/user/updateProfileImage`, {
+            imageUrl: data.url,
+            email: user.email,
+          })
+          .then((res) => {
+            Toast.fire({
+              icon: "success",
+              title: "Profile picture updated!",
+            });
+            setLoading(false);
+          })
+          .catch((err) => {
+            Toast.fire({
+              icon: "error",
+              title: "Unknown error",
+            });
+            setLoading(false);
+          });
+      })
+      .catch((err) => {
+        Toast.fire({
+          icon: "error",
+          title: "Unknown error",
+        });
+        setLoading(false);
+      });
+  };
   return (
     <Layout>
       <section className=" mx-auto my-10 w-[90%] font-inter">
@@ -35,6 +82,7 @@ export default function Settings(props: any) {
           </a>{" "}
           / <a href="">Settings</a>
         </div>
+
         <div className="grid grid-cols-[19rem] md:grid-cols-[19rem_67%]  mt-4 md:justify-between justify-around ">
           {/* -------------------- */}
           <div className="">
@@ -47,9 +95,29 @@ export default function Settings(props: any) {
                   alt="user"
                   className="border-2 border-[white] rounded-full shadow-sm"
                 />
-                <button className="border  w-[2.5rem] h-[2.5rem] bg-btnGreen rounded-full py-[9px] px-[10px] absolute top-[7.7rem] left-[6.7rem] ">
-                  {" "}
-                  <PencilIcon className="" size="1.2rem" color="white" />
+
+                <button className="border  w-[2.5rem] h-[2.5rem] bg-btnGreen rounded-full py-[9px] px-[10px] absolute top-[7.7rem] left-[6.7rem]  z-10">
+                  {loading ? (
+                    <ClipLoader
+                      color="white"
+                      // loading={loading}
+                      className="relative"
+                      size={20}
+                      aria-label="Loading Spinner"
+                      data-testid="loader"
+                    />
+                  ) : (
+                    <PencilIcon
+                      className=" relative cursor-pointer"
+                      size="1.2rem"
+                      color="white"
+                    />
+                  )}
+                  <input
+                    onChange={handleFileChange}
+                    type="file"
+                    className="border w-full h-full absolute top-0 left-0 rounded-full z-0 opacity-0 cursor-pointer"
+                  />
                 </button>
               </div>
               <h1 className="text-center text-xl text-btnGreen font-bold mt-4 ">
