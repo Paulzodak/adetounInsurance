@@ -9,13 +9,13 @@ import session from "redux-persist/lib/storage/session";
 import thunk from "redux-thunk";
 
 const persistConfig = {
-  key: "root",
+  key: "root1234",
   storage,
 };
 const rootPersistConfig = {
-  key: "root",
+  key: "root1234",
   session,
-  whitelist: ["user"],
+  whitelist: ["user", "products"],
 };
 const rootReducer = combineReducers({
   user: userSlice,

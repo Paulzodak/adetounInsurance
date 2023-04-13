@@ -11,7 +11,7 @@ export function Button(props: IButtonProps) {
   return (
     <button
       disabled={props.disable}
-      className=" focus:ring-[0.3rem] outline-none focus:ring-teal-100 focus:ring-offset-2 relative border h-full w-full bg-btnGreen text-[white] rounded-md px-4 text-sm sm:text-sm md:text-md overflow-hidden z-0 "
+      className=" focus:ring-[0.3rem] outline-none focus:ring-teal-50 focus:ring-offset-2 relative border h-full w-full bg-btnGreen text-[white] rounded-md px-4 text-sm sm:text-sm md:text-md overflow-hidden z-0 "
     >
       <div className="relative z-[5]">{props.text}</div>
       {props.disable && (
@@ -23,8 +23,8 @@ export function Button(props: IButtonProps) {
                 x: props.loading ? 0 : -400,
                 transition: {
                   type: "spring",
-                  stiffness: 100,
-                  damping: 100,
+                  stiffness: 500,
+                  damping: 500,
                   mass: 20,
                 },
               }}

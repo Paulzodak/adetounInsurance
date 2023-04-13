@@ -2,30 +2,35 @@ import * as React from "react";
 import { Layout } from "@/components/templates/Layout";
 import hero from "../../assets/shop/hero.jpg";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ProductList } from "@/components/molecules/product/ProductsList";
 import { Search } from "@/components/atoms/Search";
 import { useSelector } from "react-redux";
+import { getProducts } from "@/redux/slices/productSlice";
+import { useDispatch } from "react-redux";
 export interface IIndexProps {}
 
 export default function Index(props: any) {
+  const dispatch = useDispatch();
   const { utilitySearch } = useSelector((state: any) => state.utilities);
   const { products } = useSelector((state: any) => state.products);
   const { user } = useSelector((state: any) => state.user);
   console.log(user);
   console.log(products);
-
+  useEffect(() => {
+    dispatch(getProducts());
+  }, []);
   const dummyFilters = [
     {
       name: "All",
       active: true,
     },
     {
-      name: "Face",
+      name: "Fragrances",
       active: false,
     },
     {
-      name: "Body",
+      name: "Skin care",
       active: false,
     },
   ];
@@ -87,11 +92,11 @@ export default function Index(props: any) {
           products={[
             ...(filterHeader[0].name !== "All"
               ? products.filter(
-                  (item: any) => item.category === filterHeader[0].name
+                  (item: any) => item.productCategory === filterHeader[0].name
                 )
               : products),
           ].filter((item) =>
-            item.name.toUpperCase().includes(utilitySearch.toUpperCase())
+            item.productName.toUpperCase().includes(utilitySearch.toUpperCase())
           )}
         />
       </div>

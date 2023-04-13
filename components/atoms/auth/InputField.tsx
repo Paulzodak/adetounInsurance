@@ -18,7 +18,7 @@ export function InputField(props: IInputFieldProps) {
         }}
         placeholder={props.placeholder}
         className={` outline-none ${
-          !props.inputIsValid ? "focus:ring-rose-100" : " focus:ring-teal-100"
+          !props.inputIsValid ? "focus:ring-rose-50" : " focus:ring-teal-50"
         } bg-bgGrey h-full w-full outline-0 pt-8  px-4 focus:ring-[0.3rem] focus:ring-offset-2  rounded-md`}
       />
       {/* <Input

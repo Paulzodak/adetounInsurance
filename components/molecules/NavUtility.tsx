@@ -41,12 +41,12 @@ export function NavUtility(props: any) {
         >
           <Image
             className="rounded-full"
-            src={user.imageUrl ? user.imageUrl : userIcon}
+            src={user ? user.imageUrl : userIcon}
             alt={"user"}
             fill
           />
         </div>
-        {!user.fullname && (
+        {!user && (
           <div
             onClick={() => router.push("/auth/login")}
             className="hidden h-10 sm:block mt-[-0.3rem] "

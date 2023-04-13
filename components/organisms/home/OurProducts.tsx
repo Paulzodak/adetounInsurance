@@ -5,7 +5,7 @@ import { ProductList } from "@/components/molecules/product/ProductsList";
 export interface IOurProductsProps {}
 export function OurProducts(props: IOurProductsProps) {
   const { products } = useSelector((state: any) => state.products);
-
+  console.log(products);
   const dummyFilters = [
     {
       name: "Best-sellers",

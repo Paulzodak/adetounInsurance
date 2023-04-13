@@ -96,7 +96,7 @@ export default function Index(props: IIndexProps) {
   const signup = () => {
     if (inputIsValid.fullname && inputIsValid.email && inputIsValid.password) {
       axios
-        .post(`${BASEURL}/user/signup`, {
+        .post(`${BASEURL}/auth/signup`, {
           fullname: inputs.fullname,
           email: inputs.email,
           password: inputs.password,

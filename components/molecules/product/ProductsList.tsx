@@ -7,6 +7,7 @@ export interface IProductListProps {
 }
 export function ProductList(props: IProductListProps) {
   const router = useRouter();
+  console.log("pro" + props.products);
   const container = {
     hidden: {
       opacity: 0,

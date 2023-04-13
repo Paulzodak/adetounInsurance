@@ -88,7 +88,7 @@ export default function Index(props: IIndexProps) {
   const login = () => {
     if (inputIsValid.email && inputIsValid.password) {
       axios
-        .post(`${BASEURL}/user/fetchUser`, {
+        .post(`${BASEURL}/auth/login`, {
           email: inputs.email,
           password: inputs.password,
         })
@@ -198,7 +198,7 @@ export default function Index(props: IIndexProps) {
               {otherLogin.map((item: any) => {
                 return (
                   <button
-                    className={`focus:ring-[0.2rem] outline-none focus:ring-teal-100 focus:ring-offset-2 text-center px-4 py-2  justify-between rounded-2xl ${item.bg}`}
+                    className={`focus:ring-[0.2rem] outline-none focus:ring-teal-50 focus:ring-offset-2 text-center px-4 py-2  justify-between rounded-2xl ${item.bg}`}
                   >
                     {item.icon}
                   </button>
