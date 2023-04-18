@@ -8,6 +8,9 @@ import { Search } from "@/components/atoms/Search";
 import { useSelector } from "react-redux";
 import { getProducts } from "@/redux/slices/productSlice";
 import { useDispatch } from "react-redux";
+import { setProducts } from "@/redux/slices/productSlice";
+import axios from "axios";
+import { BASEURL } from "@/utils/global";
 export interface IIndexProps {}
 
 export default function Index(props: any) {
@@ -18,7 +21,16 @@ export default function Index(props: any) {
   console.log(user);
   console.log(products);
   useEffect(() => {
-    dispatch(getProducts());
+    console.log("i ran");
+    axios
+      .get(`${BASEURL}/product/fetchAllProducts`)
+      .then((res) => {
+        console.log(res);
+        dispatch(setProducts(res.data.products));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
   const dummyFilters = [
     {
@@ -89,15 +101,17 @@ export default function Index(props: any) {
       </div>
       <div className="my-10">
         <ProductList
-          products={[
-            ...(filterHeader[0].name !== "All"
-              ? products.filter(
+          products={
+            products && filterHeader[0].name !== "All"
+              ? products?.filter(
                   (item: any) => item.productCategory === filterHeader[0].name
                 )
-              : products),
-          ].filter((item) =>
-            item.productName.toUpperCase().includes(utilitySearch.toUpperCase())
-          )}
+              : products?.filter((items: any) =>
+                  items.productName
+                    .toUpperCase()
+                    .includes(utilitySearch.toUpperCase())
+                )
+          }
         />
       </div>
     </Layout>

@@ -52,7 +52,7 @@ export function OurProducts(props: IOurProductsProps) {
       <div className="mt-10  ">
         <ProductList
           products={products.filter(
-            (item: any) => item.tag === filterHeader[0].name
+            (item: any) => item.productCategory === filterHeader[0].name
           )}
         />
       </div>

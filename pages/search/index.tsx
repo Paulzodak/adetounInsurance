@@ -17,7 +17,7 @@ export default function Search(props: any) {
       <div className="my-10">
         <ProductList
           products={products.filter((item: any) =>
-            item.name.toLowerCase().includes(utilitySearch.toLowerCase())
+            item.productName.toLowerCase().includes(utilitySearch.toLowerCase())
           )}
         />
       </div>

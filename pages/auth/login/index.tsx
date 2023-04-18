@@ -13,7 +13,7 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { BASEURL } from "@/utils/global";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Toast } from "@/utils/global";
 import { useJwt } from "react-jwt";
 import { setUser } from "@/redux/slices/userSlice";
@@ -24,6 +24,8 @@ export default function Index(props: IIndexProps) {
   const router = useRouter();
   const iconSize = "1.1rem";
   const dispatch = useDispatch();
+  const { user } = useSelector((state: any) => state.user);
+  console.log(user);
   const [token, setToken] = useState<any>();
   const { decodedToken, isExpired } = useJwt(token);
   useEffect(() => {
@@ -96,6 +98,13 @@ export default function Index(props: IIndexProps) {
           console.log(res);
           if (res.data.user) {
             setToken(res.data.user);
+          } else {
+            console.log("err");
+            Toast.fire({
+              icon: "error",
+              title: "Error",
+            });
+            setLoading(false);
           }
           setLoading(false);
           Toast.fire({

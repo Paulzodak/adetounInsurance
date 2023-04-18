@@ -12,16 +12,12 @@ export interface IAppProps {}
 
 export default function Index(props: any) {
   const [quanity, setQuantity] = useState(1);
-  const [product, setProduct] = useState({
-    image: "",
-    name: "",
-    price: "",
-  });
+  const [product, setProduct] = useState<any>({});
   const { products } = useSelector((state: any) => state.products);
   const router = useRouter();
   useEffect(() => {
     products.map(
-      (item: any) => item.id == router.query.id && setProduct({ ...item })
+      (item: any) => item._id == router.query.id && setProduct({ ...item })
     );
   }, []);
 
@@ -32,11 +28,20 @@ export default function Index(props: any) {
   return (
     <Layout>
       <div className="my-20 font-inter">
-        <div className="grid gap-y-16 md:grid md:grid-cols-2  ">
+        <div className="grid gap-y-16 md:grid md:grid-cols-2 lg:grid-cols-[40%_60%]  ">
           {/*  */}
-          <div className=" grid gap-x-4  grid-cols-[20%_80%] h-80 mx-auto w-[18rem]">
+          <div className=" grid gap-x-4  grid-cols-[20%_80%] h-80 mx-auto w-[18rem]  md:w-[24rem] md:h-[30rem] ">
             <div className=" grid gap-y-2 grid-rows-4">
-              <div className=" relative rounded-md overflow-hidden">
+              {product.productImages &&
+                product.productImages.map((item: any, index: number) => {
+                  console.log(item);
+                  return (
+                    <div className=" relative rounded-md overflow-hidden ">
+                      <Image src={item} alt="" fill />
+                    </div>
+                  );
+                })}
+              {/* <div className=" relative rounded-md overflow-hidden">
                 <Image src={product.image} alt="" fill />
               </div>
               <div className=" relative rounded-md overflow-hidden">
@@ -51,25 +56,27 @@ export default function Index(props: any) {
             </div>
             <div className="relative rounded-md overflow-hidden">
               <Image src={product.image} alt="" fill />
+            </div> */}
+            </div>
+            <div className=" relative rounded-md overflow-hidden ">
+              <Image
+                src={product.productImages && product.productImages[0]}
+                alt=""
+                fill
+              />
             </div>
           </div>
           {/*  */}
-          <div className=" w-[18rem] mx-auto  md:w-[24rem] ">
+          <div className=" w-[21rem] mx-auto  md:w-[25rem] lg:w-[40rem]  p-4">
             <h1 className="text-2xl font-bold">{product.name}</h1>
-            <p className="mt-2">
-              Aliquip fugiat ipsum nostrud ex et eu incididunt
-            </p>
+            <p className="mt-2 ">{product.productName}</p>
             <div className="mt-8 ">
               <span className="font-bold text-4xl text-btnGreen">
-                ${product.price}
+                ${product.productPrice}
               </span>
               <span className="ml-4 font-bold text-2xl text-textGrey">$20</span>
             </div>
-            <p className="mt-4">
-              In ullamco labore mollit et exercitation fugiat exercitation minim
-              ex sint ullamco exercitation amet officia mollit. Qui cillum
-              pariatur in con
-            </p>
+            <p className="mt-4 break-all">{product.productPurpose}</p>
             <div className="grid grid-cols-[repeat(3,auto)] mt-8">
               <div>
                 <span className="font-bold">358 </span>
@@ -130,7 +137,9 @@ export default function Index(props: any) {
           </h1>
           <div className=" mt-8">
             <ProductList
-              products={products.filter((item: any) => item.price < 30)}
+              products={products.filter(
+                (item: any) => item.productCategory == product.productCategory
+              )}
             />
           </div>
         </section>

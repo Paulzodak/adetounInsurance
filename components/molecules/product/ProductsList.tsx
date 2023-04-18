@@ -37,20 +37,21 @@ export function ProductList(props: IProductListProps) {
       className="grid grid-cols-[repeat(2,47%)] gap-y-4 justify-between w-[20rem] mx-auto sm:grid-cols-[repeat(3,32%)] sm:w-[35rem] md:grid-cols-[repeat(4,22%)] md:w-[40rem]"
     >
       <AnimatePresence>
-        {[...props.products]
-          // .filter((item) => (filter ? item.price === 22 : item.price === 32))
-          .map((item: any, index: any) => {
-            return (
-              <motion.div
-                layout={true}
-                key={item.id}
-                variants={items}
-                onClick={() => router.push(`/productDetail/${item.id}`)}
-              >
-                <Product details={item} />
-              </motion.div>
-            );
-          })}
+        {props.products &&
+          [...props.products]
+            // .filter((item) => (filter ? item.price === 22 : item.price === 32))
+            .map((item: any, index: any) => {
+              return (
+                <motion.div
+                  layout={true}
+                  key={item.id}
+                  variants={items}
+                  onClick={() => router.push(`/productDetail/${item._id}`)}
+                >
+                  <Product details={item} />
+                </motion.div>
+              );
+            })}
       </AnimatePresence>
     </motion.div>
   );

@@ -7,95 +7,14 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { BASEURL } from "@/utils/global";
 const initialState = {
-  products: [
-    {
-      id: Math.random(),
-      name: "Perfume",
-      desc: "",
-      discount: 10,
-      tag: "Best-sellers",
-      image: perfume,
-      price: 32,
-      category: "Face",
-    },
-    {
-      id: Math.random(),
-      name: "Perfume",
-      desc: "",
-      discount: 10,
-      tag: "Best-sellers",
-      image: perfume,
-      price: 32,
-      category: "Face",
-    },
-    {
-      id: Math.random(),
-      name: "Beard Oil",
-      desc: "",
-      price: 22,
-      discount: 10,
-      tag: "Best-sellers",
-      image: beardoil,
-      category: "Face",
-    },
-    {
-      id: Math.random(),
-      name: "Beard Oil",
-      desc: "",
-      price: 22,
-      discount: 10,
-      tag: "Best-sellers",
-      image: beardoil,
-      category: "Body",
-    },
-    {
-      id: Math.random(),
-      name: "Fast Beard Oil",
-      desc: "",
-      price: 18,
-      discount: 10,
-      tag: "New-products",
-      image: beardoil2,
-      category: "Face",
-    },
-    {
-      id: Math.random(),
-      name: "Fast Beard Oil",
-      desc: "",
-      price: 18,
-      discount: 10,
-      tag: "New-products",
-      image: beardoil2,
-      category: "Body",
-    },
-    {
-      id: Math.random(),
-      name: "Deodorant",
-      desc: "",
-      price: 48,
-      discount: 10,
-      tag: "New-products",
-      image: deodorant,
-      category: "Face",
-    },
-    {
-      id: Math.random(),
-      name: "Deodorant",
-      desc: "",
-      price: 48,
-      discount: 10,
-      tag: "New-products",
-      image: deodorant,
-      category: "Body",
-    },
-  ],
+  products: undefined,
 };
 export const getProducts: any = createAsyncThunk("product/getProducts", () => {
   return axios
     .get(`${BASEURL}/product/fetchAllProducts`)
     .then((res) => {
       console.log(res);
-      return [...res.data.products];
+      return res.data.products;
     })
     .catch((err) => console.log(err));
 });
@@ -103,7 +22,9 @@ export const productSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    setProducts: () => {},
+    setProducts: (state: any, action: any) => {
+      state.products = action.payload;
+    },
   },
   extraReducers: {
     [getProducts.pending]: (state: any) => {

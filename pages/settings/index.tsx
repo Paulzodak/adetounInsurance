@@ -34,7 +34,9 @@ export default function Settings(props: any) {
   };
   const handleFileChange = async (e: any) => {
     setLoading(true);
+
     const file = e.target.files[0];
+    console.log(file);
     const formData = new FormData();
     formData.append("file", file);
     formData.append("upload_preset", "fashion-store-image");

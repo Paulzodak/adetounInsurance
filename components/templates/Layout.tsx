@@ -124,7 +124,7 @@ export function Layout(props: any) {
                 mass: 1,
               },
             }}
-            className="fixed w-screen  sm:w-[50%] h-screen overflow-hidden bg-[white] z-10 border lg:hidden"
+            className="fixed w-screen  sm:w-[50%] h-screen overflow-hidden bg-[white] z-10 border lg:hidden top-[4rem]"
           >
             <SideNav
               navItems={navItems}
@@ -135,14 +135,16 @@ export function Layout(props: any) {
         )}
       </AnimatePresence>
       {/* ------------------NAVBAR--------------------------- */}
-      <div className="grid grid-cols-[0.5fr_2fr] lg:grid-cols-[17rem_3rem_40rem] w-full justify-around h-[4rem] overflow-hidden ">
-        <NavItems
-          navItems={navItems}
-          showSideNav={showSideNav}
-          setShowSideNav={setShowSideNav}
-        />
-        <div className="hidden lg:block"></div>
-        <NavUtility />
+      <div className="h-[4rem]">
+        <div className="grid grid-cols-[0.5fr_2fr] lg:grid-cols-[17rem_3rem_40rem] w-full justify-around h-[4rem] overflow-hidden fixed bg-[white] z-10 shadow-md">
+          <NavItems
+            navItems={navItems}
+            showSideNav={showSideNav}
+            setShowSideNav={setShowSideNav}
+          />
+          <div className="hidden lg:block"></div>
+          <NavUtility />
+        </div>
       </div>
 
       {props.children}
