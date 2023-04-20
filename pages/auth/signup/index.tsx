@@ -16,12 +16,15 @@ import axios from "axios";
 import { Toast } from "@/utils/global";
 import { BASEURL } from "@/utils/global";
 import AuthLayout from "@/components/templates/AuthLayout";
+import { FiEye as EyeOn } from "react-icons/fi";
+import { FiEyeOff as EyeOff } from "react-icons/fi";
 export interface IIndexProps {}
 export default function Index(props: IIndexProps) {
   const router = useRouter();
   const dispatch = useDispatch();
   const iconSize = "1.1rem";
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const [inputs, setInputs] = useState<any>({
     fullname: "",
     email: "",
@@ -176,14 +179,26 @@ export default function Index(props: IIndexProps) {
                 ? setInputIsValidHandler("password", true)
                 : setInputIsValidHandler("password", false);
             }}
-            className={`mt-8 mx-auto h-[4rem] w-[18rem] `}
+            className={`mt-8 mx-auto h-[4rem] w-[18rem] relative `}
           >
             <InputField
               setInput={passwordHandler}
               inputIsValid={inputIsValid.password}
               name="Password"
-              placeholder="Enter at least 8+ characters "
+              placeholder="Enter at least 8+ characters"
+              showPassword={showPassword}
+              password
             />
+            <div
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute left-64 top-[38px]"
+            >
+              {showPassword ? (
+                <EyeOn size="1.3rem" className="text-gray-600" />
+              ) : (
+                <EyeOff size="1.3rem" className="text-gray-600" />
+              )}
+            </div>
           </div>
           <div
             onClick={() => {

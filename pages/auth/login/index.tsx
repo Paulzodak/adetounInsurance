@@ -18,6 +18,8 @@ import { Toast } from "@/utils/global";
 import { useJwt } from "react-jwt";
 import { setUser } from "@/redux/slices/userSlice";
 import AuthLayout from "@/components/templates/AuthLayout";
+import { FiEye as EyeOn } from "react-icons/fi";
+import { FiEyeOff as EyeOff } from "react-icons/fi";
 export interface IIndexProps {}
 
 export default function Index(props: IIndexProps) {
@@ -28,6 +30,7 @@ export default function Index(props: IIndexProps) {
   console.log(user);
   const [token, setToken] = useState<any>();
   const { decodedToken, isExpired } = useJwt(token);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   useEffect(() => {
     dispatch(setUser(decodedToken));
     console.log("set User");
@@ -164,14 +167,26 @@ export default function Index(props: IIndexProps) {
             //     ? setInputIsValidHandler("password", true)
             //     : setInputIsValidHandler("password", false);
             // }}
-            className={`mt-8 mx-auto h-[4rem] w-[18rem] `}
+            className={`mt-8 mx-auto h-[4rem] w-[18rem] relative`}
           >
             <InputField
               setInput={passwordHandler}
+              showPassword={showPassword}
+              password
               inputIsValid={inputIsValid.password}
               name="Password"
               placeholder="Enter at least 8+ characters "
             />
+            <div
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute left-64 top-[38px]"
+            >
+              {showPassword ? (
+                <EyeOn size="1.3rem" className="text-gray-600" />
+              ) : (
+                <EyeOff size="1.3rem" className="text-gray-600" />
+              )}
+            </div>
           </div>
           {/*  */}
           <div className=" grid grid-cols-[auto_auto] justify-between w-[18rem] mx-auto text-xs mt-4">
