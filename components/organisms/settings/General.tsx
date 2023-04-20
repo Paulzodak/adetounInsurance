@@ -14,14 +14,23 @@ export function General(props: IGeneralProps) {
         <div className="mt-4">
           <div className="grid grid-cols-2  gap-x-4 ">
             <div className="w-full ">
-              <InputField name="Full name" placeholder="Your full name" />
+              <InputField
+                setValue={() => {}}
+                name="Full name"
+                placeholder="Your full name"
+              />
             </div>
             <div className="w-full ">
-              <InputField name="Username" placeholder="Your username" />
+              <InputField
+                setValue={() => {}}
+                name="Username"
+                placeholder="Your username"
+              />
             </div>
           </div>
           <div className="w-full mt-4 ">
             <InputField
+              setValue={() => {}}
               type="select"
               name="Profession"
               placeholder="Your full name"
@@ -30,13 +39,19 @@ export function General(props: IGeneralProps) {
           </div>
           <div className="w-full mt-4 ">
             <InputField
+              setValue={() => {}}
               type="select"
               name="Location"
               placeholder="-Select your location-"
             />
           </div>
           <div className="w-full mt-4 ">
-            <InputField type="textfield" name="Bio" placeholder="Your bio" />
+            <InputField
+              setValue={() => {}}
+              type="textfield"
+              name="Bio"
+              placeholder="Your bio"
+            />
           </div>
         </div>
         <div>

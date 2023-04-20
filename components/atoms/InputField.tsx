@@ -7,7 +7,7 @@ export interface IInputFieldProps {
   placeholder?: string;
   value?: string;
   valid?: boolean;
-  setValue?: Function;
+  setValue: Function;
   setValid?: Function;
 }
 

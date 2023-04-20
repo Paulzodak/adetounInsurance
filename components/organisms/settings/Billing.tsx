@@ -55,7 +55,11 @@ export function Billing(props: IBillingProps) {
         {inputs.map((item) => {
           return (
             <div className="h-8 mb-14">
-              <InputField name={item.name} placeholder={item.name} />
+              <InputField
+                setValue={() => {}}
+                name={item.name}
+                placeholder={item.name}
+              />
             </div>
           );
         })}
@@ -70,13 +74,22 @@ export function Billing(props: IBillingProps) {
         {billingAddress.map((item) => {
           return (
             <div className="h-8 mb-14">
-              <InputField name={item.name} placeholder={item.name} />
+              <InputField
+                setValue={() => {}}
+                name={item.name}
+                placeholder={item.name}
+              />
             </div>
           );
         })}
       </div>
       <div className="">
-        <InputField type="textfield" name={"Address"} placeholder={"Address"} />
+        <InputField
+          setValue={() => {}}
+          type="textfield"
+          name={"Address"}
+          placeholder={"Address"}
+        />
       </div>
     </section>
   );
