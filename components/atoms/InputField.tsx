@@ -24,8 +24,8 @@ export function InputField(props: IInputFieldProps) {
             onChange={(e) => props.setValue(e.target.value)}
             className={` ${
               !props.valid &&
-              "focus:ring-[0.2rem] outline-none ring-red-50 ring-offset-2"
-            } px-4 p-2 bg-bgGrey w-full h-10 mt-2 rounded-md focus:ring-[0.2rem] outline-none focus:ring-teal-100 focus:ring-offset-2 border-0 focus:outline focus:outline-offset-2 focus:outline-1 focus:outline-teal-100`}
+              "focus:outline focus:outline-offset-2 focus:outline-[0.2rem] focus:outline-red-100"
+            } px-4 p-2 bg-bgGrey w-full h-10 mt-2 rounded-md  border-0 focus:outline focus:outline-offset-2 focus:outline-[0.2rem] focus:outline-teal-100`}
             id={props.name}
           >
             <option></option>
@@ -38,8 +38,8 @@ export function InputField(props: IInputFieldProps) {
             onChange={(e) => props.setValue(e.target.value)}
             className={`${
               !props.valid &&
-              "focus:ring-[0.2rem] outline-none ring-red-50 ring-offset-2"
-            } focus:ring-[0.2rem] outline-none focus:ring-teal-100 focus:ring-offset-2 bg-bgGrey mt-2 w-full h-20 rounded-md h-40 border-0 focus:outline focus:outline-offset-2 focus:outline-1 focus:outline-teal-100 `}
+              "focus:outline focus:outline-offset-2 focus:outline-[0.2rem] focus:outline-red-100"
+            }  bg-bgGrey mt-2 w-full h-20 rounded-md h-40 border-0 focus:outline focus:outline-offset-2 focus:outline-[0.2rem] focus:outline-teal-100 `}
             placeholder={props.placeholder}
           />
         ) : (
@@ -48,8 +48,8 @@ export function InputField(props: IInputFieldProps) {
             placeholder={props.placeholder}
             className={`${
               !props.valid &&
-              "focus:ring-[0.2rem] outline-none ring-red-50 ring-offset-2"
-            } focus:ring-[0.2rem] outline-none focus:ring-teal-100 focus:ring-offset-2 focus:outline focus:outline-offset-2 focus:outline-1 focus:outline-teal-100 bg-bgGrey w-full  h-full mt-2 rounded-md px-4`}
+              "focus:outline focus:outline-offset-2 focus:outline-[0.2rem] focus:outline-red-100"
+            }  focus:ring-offset-2 focus:ring-[0.2rem] focus:ring-teal-100 bg-bgGrey w-full border-0 ring-none  h-full mt-2 rounded-md px-4`}
             id={props.name}
             onChange={(e: any) => {
               props.setValue(e.target.value);
