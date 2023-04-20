@@ -3,8 +3,8 @@ import Input from "./input";
 export interface IInputFieldProps {
   name: string;
   placeholder: string;
-  setInput: any;
-  inputIsValid: boolean;
+  setInput?: any;
+  inputIsValid?: boolean;
 }
 
 export function InputField(props: IInputFieldProps) {

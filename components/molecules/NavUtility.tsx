@@ -7,6 +7,7 @@ import Image from "next/image";
 import { Button } from "../atoms/Button";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
+import { IoMdNotificationsOutline as NotIcon } from "react-icons/io";
 export interface INavUtilityProps {}
 
 export function NavUtility(props: any) {
@@ -31,7 +32,12 @@ export function NavUtility(props: any) {
             2
           </button>
         </div>
-        <div>Cart</div>
+        <div className="relative">
+          <NotIcon size={iconSize} />
+          <button className="absolute top-3 left-3 text-xs bg-btnGreen px-[4px] rounded-full text-[white]">
+            0
+          </button>
+        </div>
 
         <div
           onClick={() => {

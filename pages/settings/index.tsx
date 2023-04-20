@@ -13,6 +13,8 @@ import { BASEURL } from "@/utils/global";
 import { ClipLoader } from "react-spinners";
 import { getUser, setUser } from "@/redux/slices/userSlice";
 import { useDispatch } from "react-redux";
+import { General } from "@/components/organisms/settings/General";
+import { Billing } from "@/components/organisms/settings/Billing";
 export interface IIndexProps {}
 
 export default function Settings(props: any) {
@@ -82,6 +84,24 @@ export default function Settings(props: any) {
         setLoading(false);
       });
   };
+
+  const [settingsNav, setSettingsNav] = useState<any>([
+    { name: "General", active: true, id: 0 },
+    { name: "Billings", active: false, id: 1 },
+    { name: "Language and Region", active: false, id: 2 },
+    { name: "Security", active: false, id: 3 },
+  ]);
+  const setNavHandler = (id: number) => {
+    setSettingsNav((prev: any) => {
+      const temp = [...prev];
+      console.log(id);
+      temp.filter((item: any) =>
+        item.id == id ? (item.active = true) : (item.active = false)
+      );
+      console.log(temp);
+      return temp;
+    });
+  };
   return (
     <Layout>
       <section className=" mx-auto my-10 w-[90%] font-inter">
@@ -92,10 +112,12 @@ export default function Settings(props: any) {
           / <a href="">Settings</a>
         </div>
 
-        <div className="grid grid-cols-[19rem] md:grid-cols-[19rem_67%]  mt-4 md:justify-between justify-around ">
+        <div className="md:grid md:gap-x-10 md:grid-cols-[19rem_auto]  lg:grid-cols-[19rem_67%]  mt-4 md:justify-between justify-around ">
           {/* -------------------- */}
-          <div className="">
-            <h1 className="text-4xl font-bold ">Settings</h1>
+          <div className="mx-auto w-[19rem] ">
+            <div className="h-10">
+              <h1 className="text-4xl font-bold ">Settings</h1>
+            </div>
             <div className="border-2 border-borderGrey rounded-md mt-6 mb-2 pb-4">
               <div className="relative h-[10rem] w-[10rem] mx-auto mt-2">
                 <Image
@@ -153,9 +175,27 @@ export default function Settings(props: any) {
             </div>
           </div>
           {/* ----------------------- */}
-          <div className="">
-            <h1 className="text-4xl font-bold ">Tools</h1>
-            <div className="border-2 border-borderGrey rounded-md mt-6"></div>
+          <div className="mt-20 sm:mt-20 md:mt-0 w-[90%] mx-auto md:mx-0 sm:w-[80%] md:w-[100%]">
+            <div className="h-10">
+              <h1 className=" gap-x-[5px] text-xs sm:text-md grid grid-cols-[auto_auto_auto_auto] sm:gap-x-[40px]  md:grid md:grid-cols-[auto_auto_auto_auto] md:gap-x-[12px]  ">
+                {settingsNav.map((item: any) => {
+                  return (
+                    <div
+                      onClick={() => setNavHandler(item.id)}
+                      className={`${
+                        item.active && "border-b-4 border-btnGreen"
+                      } text-center rounded-sm`}
+                    >
+                      {item.name}
+                    </div>
+                  );
+                })}
+              </h1>
+            </div>
+            <div className="border-2 border-borderGrey rounded-md mt-6 border">
+              {/* <General /> */}
+              <Billing />
+            </div>
           </div>
         </div>
       </section>

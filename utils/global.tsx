@@ -14,4 +14,4 @@ export const Toast = Swal.mixin({
   },
 });
 // export const BASEURL = "http://localhost:5000/api";
-export const BASEURL = "https://fashion-store-server.vercel.app";
+export const BASEURL = "https://fashion-store-server.vercel.app/api";
