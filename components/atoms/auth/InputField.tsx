@@ -18,7 +18,9 @@ export function InputField(props: IInputFieldProps) {
         onChange={(e) => {
           props.setInput(e.target.value);
         }}
-        type={props.password && props.showPassword ? "text" : "password"}
+        type={
+          !props.password ? "text" : props.showPassword ? "text" : "password"
+        }
         placeholder={props.placeholder}
         className={` outline-none ${
           !props.inputIsValid ? "focus:ring-rose-50" : " focus:ring-teal-50"
