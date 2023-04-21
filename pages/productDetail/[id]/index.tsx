@@ -27,7 +27,7 @@ export default function Index(props: any) {
 
   return (
     <Layout>
-      <div className="my-20 font-inter">
+      <div className="my-20 font-epilogue">
         <div className="grid gap-y-16 md:grid md:grid-cols-2 lg:grid-cols-[40%_60%]  ">
           {/*  */}
           <div className=" grid gap-x-4  grid-cols-[20%_80%] h-80 mx-auto w-[18rem]  md:w-[24rem] md:h-[30rem] ">
@@ -68,8 +68,8 @@ export default function Index(props: any) {
           </div>
           {/*  */}
           <div className=" w-[21rem] mx-auto  md:w-[25rem] lg:w-[40rem]  p-4">
-            <h1 className="text-2xl font-bold">{product.name}</h1>
-            <p className="mt-2 ">{product.productName}</p>
+            <h1 className="text-2xl font-bold">{product.productName}</h1>
+            {/* <p className="mt-2 font-bold ">{product.productName}</p> */}
             <div className="mt-8 ">
               <span className="font-bold text-4xl text-btnGreen">
                 ${product.productPrice}
@@ -131,8 +131,9 @@ export default function Index(props: any) {
             </div>
           </div>
         </div>
-        <section className=" mt-20  text-xl font-bold ">
-          <h1 className=" w-[20rem] mx-auto sm:w-[35rem]  md:w-[40rem]">
+        {/*  */}
+        <section className=" mt-20  ">
+          <h1 className="text-2xl  w-[20rem] mx-auto sm:w-[35rem] font-bold  md:w-[40rem]">
             Related products
           </h1>
           <div className=" mt-8">
@@ -143,7 +144,31 @@ export default function Index(props: any) {
             />
           </div>
         </section>
+        <div className=" w-[20rem] mx-auto sm:w-[35rem]   md:w-[40rem] mt-20">
+          <h1 className="text-2xl font-bold ">Directions</h1>
+          <div className="break-all text-sm">{product.productDou}</div>
+        </div>
+        <div className=" w-[20rem] mx-auto sm:w-[35rem]    md:w-[40rem] mt-20">
+          <h1 className="text-2xl font-bold ">Ingredients</h1>
+          <div className="break-all text-sm">{product.productIngredients}</div>
+        </div>
       </div>
+
+      <div className=" ">
+        <h1 className="text-2xl font-bold w-[80%] mx-auto">How to use</h1>
+        <div className="my-8 m-auto">
+          <video
+            src={require("../../../assets/home/video.mp4")}
+            className=" mx-auto h-[auto]  w-[80%] rounded-md "
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+        </div>
+      </div>
+
+      {/*  */}
     </Layout>
   );
 }

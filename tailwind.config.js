@@ -16,6 +16,7 @@ module.exports = {
       },
       fontFamily: {
         inter: ["'Inter', sans-serif"],
+        epilogue: ["'Epilogue', sans-serif"],
       },
       backgroundImage: {
         hero: "url('/assets/home/hero.jpg')",
