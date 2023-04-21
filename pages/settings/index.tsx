@@ -192,7 +192,7 @@ export default function Settings(props: any) {
             </div>
           </div>
           {/* ----------------------- */}
-          <div className="mt-20 sm:mt-20 md:mt-0 w-[90%] mx-auto md:mx-0 sm:w-[80%] md:w-[100%]">
+          <div className="mt-20 sm:mt-20 md:mt-0 w-[100%] mx-auto md:mx-0 sm:w-[85%] md:w-[100%]">
             <div className="h-10">
               <h1 className=" gap-x-[5px]  sm:text-md grid grid-cols-[auto_auto_auto_auto] sm:gap-x-[40px]  md:grid md:grid-cols-[auto_auto_auto_auto] md:gap-x-[12px]  ">
                 {settingsNav.map((item: any) => {
