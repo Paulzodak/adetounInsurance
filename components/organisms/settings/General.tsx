@@ -12,15 +12,15 @@ export function General(props: IGeneralProps) {
       <div>
         <h1 className="font-bold text-2xl">Profile</h1>
         <div className="mt-4">
-          <div className="grid grid-cols-2  gap-x-4 ">
-            <div className="w-full ">
+          <div className="grid grid-cols-2   gap-x-4 ">
+            <div className="w-full h-10 ">
               <InputField
                 setValue={() => {}}
                 name="Full name"
                 placeholder="Your full name"
               />
             </div>
-            <div className="w-full ">
+            <div className="w-full h-10 ">
               <InputField
                 setValue={() => {}}
                 name="Username"
@@ -28,7 +28,7 @@ export function General(props: IGeneralProps) {
               />
             </div>
           </div>
-          <div className="w-full mt-4 ">
+          <div className="w-full mt-12 ">
             <InputField
               setValue={() => {}}
               type="select"

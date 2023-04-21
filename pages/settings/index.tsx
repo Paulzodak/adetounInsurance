@@ -20,6 +20,7 @@ export interface IIndexProps {}
 export default function Settings(props: any) {
   const dispatch = useDispatch();
   const { user } = useSelector((state: any) => state.user);
+  const [sectionName, setSectionName] = useState();
   console.log(user);
   const [image, setImage] = useState<string | ArrayBuffer | null>();
   const [loading, setLoading] = useState<boolean>(false);
@@ -114,23 +115,9 @@ export default function Settings(props: any) {
   // };
   // sectionRender();
   React.useEffect(() => {
-    // switch (2) {
-    //   case 2:
-    //     console.log("general");
-    //     break;
-    //   case 3:
-    //     console.log("Billings");
-    //     break;
-    // }
-    // console.log("i ran");
-    if (
-      settingsNav.filter((item: any) => {
-        const a = item.active == true ? item.name : null;
-        return a == "General";
-      })
-    ) {
-      console.log("General");
-    }
+    settingsNav.filter(
+      (item: any) => item.active == true && setSectionName(item.name)
+    );
   }, [settingsNav]);
   return (
     <Layout>
@@ -223,8 +210,8 @@ export default function Settings(props: any) {
               </h1>
             </div>
             <div className="border-2 border-borderGrey rounded-md mt-6 border">
-              {/* <General /> */}
-              <Billing />
+              {sectionName == "General" && <General />}
+              {sectionName == "Billings" && <Billing />}
             </div>
           </div>
         </div>
