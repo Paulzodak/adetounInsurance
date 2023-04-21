@@ -12,6 +12,7 @@ module.exports = {
         textGrey: "#BCC1CAFF",
         btnGreen: " #459D7AFF",
         bgGrey: "#F3F4F6FF",
+        lightBtnGreen: "#F4FAF8FF",
       },
       fontFamily: {
         inter: ["'Inter', sans-serif"],
