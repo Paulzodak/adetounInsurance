@@ -102,6 +102,36 @@ export default function Settings(props: any) {
       return temp;
     });
   };
+  // const sectionRender = () => {
+  //   switch (settingsNav.map((item: any) => item.active === true && item.name)) {
+  //     case "General":
+  //       console.log("general");
+  //       break;
+  //     case "Billings":
+  //       console.log("Billings");
+  //       break;
+  //   }
+  // };
+  // sectionRender();
+  React.useEffect(() => {
+    // switch (2) {
+    //   case 2:
+    //     console.log("general");
+    //     break;
+    //   case 3:
+    //     console.log("Billings");
+    //     break;
+    // }
+    // console.log("i ran");
+    if (
+      settingsNav.filter((item: any) => {
+        const a = item.active == true ? item.name : null;
+        return a == "General";
+      })
+    ) {
+      console.log("General");
+    }
+  }, [settingsNav]);
   return (
     <Layout>
       <section className=" mx-auto my-10 w-[90%] font-inter">
@@ -177,7 +207,7 @@ export default function Settings(props: any) {
           {/* ----------------------- */}
           <div className="mt-20 sm:mt-20 md:mt-0 w-[90%] mx-auto md:mx-0 sm:w-[80%] md:w-[100%]">
             <div className="h-10">
-              <h1 className=" gap-x-[5px] text-xs sm:text-md grid grid-cols-[auto_auto_auto_auto] sm:gap-x-[40px]  md:grid md:grid-cols-[auto_auto_auto_auto] md:gap-x-[12px]  ">
+              <h1 className=" gap-x-[5px]  sm:text-md grid grid-cols-[auto_auto_auto_auto] sm:gap-x-[40px]  md:grid md:grid-cols-[auto_auto_auto_auto] md:gap-x-[12px]  ">
                 {settingsNav.map((item: any) => {
                   return (
                     <div

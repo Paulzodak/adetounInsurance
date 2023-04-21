@@ -36,10 +36,11 @@ export function InputField(props: IInputFieldProps) {
         ) : props.type == "textfield" ? (
           <textarea
             onChange={(e) => props.setValue(e.target.value)}
+            // className="focus:border-transparent focus:ring-0"
             className={`${
               !props.valid &&
-              "focus:outline focus:outline-offset-2 focus:outline-[0.2rem] focus:outline-red-100"
-            }  bg-bgGrey mt-2 w-full h-20 rounded-md h-40 border-0 focus:outline focus:outline-offset-2 focus:outline-[0.2rem] focus:outline-teal-100 `}
+              "focus:ring-offset-2 focus:ring-[0.2rem] focus:ring-red-100 focus:border-transparent "
+            }  bg-bgGrey mt-2 w-full h-20 rounded-md h-40 border-0  focus:ring-offset-2 focus:ring-[0.2rem] focus:ring-teal-100 `}
             placeholder={props.placeholder}
           />
         ) : (

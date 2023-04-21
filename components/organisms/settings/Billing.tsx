@@ -68,7 +68,7 @@ export function Billing(props: IBillingProps) {
         <HomeIcon size="1.5rem" className="text-yellow-200" />
         <h1>Billing address</h1>
         <div />
-        <p className="text-sm text-textGrey">Enter your billing address</p>
+        <p className="text-sm  text-textGrey">Enter your billing address</p>
       </div>
       <div className="mt-4 sm:grid sm:grid-cols-2 sm:gap-x-8">
         {billingAddress.map((item) => {
