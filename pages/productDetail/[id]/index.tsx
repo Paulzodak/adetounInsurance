@@ -8,6 +8,7 @@ import { Button } from "@/components/atoms/Button";
 import Image from "next/image";
 import { BiCartDownload as CartIcon } from "react-icons/bi";
 import { ProductList } from "@/components/molecules/product/ProductsList";
+import { AiOutlineRight as RightIcon } from "react-icons/ai";
 export interface IAppProps {}
 
 export default function Index(props: any) {
@@ -28,15 +29,31 @@ export default function Index(props: any) {
   return (
     <Layout>
       <div className="my-20 font-epilogue">
+        <div className="mx-[3.8rem] grid grid-cols-[auto_1rem_auto_1rem_auto]  w-[18rem] justify-between mb-4">
+          <a href="" className="text-btnGreen">
+            Home
+          </a>
+          <div className="mt-[3px]">
+            <RightIcon />
+          </div>
+          <a href="" className="text-btnGreen">
+            Shop
+          </a>
+          <div className="mt-[3px]">
+            <RightIcon />
+          </div>
+          <a href="" className="text-btnGreen">
+            Product details
+          </a>
+        </div>
         <div className="grid gap-y-16 md:grid md:grid-cols-2 lg:grid-cols-[40%_60%]  ">
           {/*  */}
           <div className=" grid gap-x-4  grid-cols-[20%_80%] h-80 mx-auto w-[18rem]  md:w-[24rem] md:h-[30rem] ">
             <div className=" grid gap-y-2 grid-rows-4">
               {product.productImages &&
                 product.productImages.map((item: any, index: number) => {
-                  console.log(item);
                   return (
-                    <div className=" relative rounded-md overflow-hidden ">
+                    <div className=" relative rounded-md overflow-hidden shadow-md rounded-md  ">
                       <Image src={item} alt="" fill />
                     </div>
                   );
@@ -58,7 +75,7 @@ export default function Index(props: any) {
               <Image src={product.image} alt="" fill />
             </div> */}
             </div>
-            <div className=" relative rounded-md overflow-hidden ">
+            <div className=" relative rounded-md overflow-hidden  ">
               <Image
                 src={product.productImages && product.productImages[0]}
                 alt=""
@@ -144,14 +161,18 @@ export default function Index(props: any) {
             />
           </div>
         </section>
-        <div className=" w-[20rem] mx-auto sm:w-[35rem]   md:w-[40rem] mt-20">
-          <h1 className="text-2xl font-bold ">Directions</h1>
-          <div className="break-all text-sm">{product.productDou}</div>
-        </div>
-        <div className=" w-[20rem] mx-auto sm:w-[35rem]    md:w-[40rem] mt-20">
-          <h1 className="text-2xl font-bold ">Ingredients</h1>
-          <div className="break-all text-sm">{product.productIngredients}</div>
-        </div>
+        <section className="grid md:grid-cols-2 mx-16 gap-x-8 gap-y-14 mt-4">
+          <div className=" p-8 rounded-md shadow-lg">
+            <h1 className="text-2xl font-bold   ">Directions</h1>
+            <div className="break-all text-sm">{product.productDou}</div>
+          </div>
+          <div className="p-8  rounded-md shadow-lg">
+            <h1 className="text-2xl font-bold  ">Ingredients</h1>
+            <div className="break-all text-sm">
+              {product.productIngredients}
+            </div>
+          </div>
+        </section>
       </div>
 
       <div className=" ">
