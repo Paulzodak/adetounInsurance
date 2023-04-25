@@ -171,10 +171,11 @@ export default function Settings(props: any) {
               <h1 className="text-center text-xl text-btnGreen font-bold mt-4 ">
                 {username}
               </h1>
-              <p className="text-center text-sm">Professional title</p>
+              <p className="text-center text-sm">
+                {user.profession ? user.profession : "Profession title"}
+              </p>
               <p className="text-textGrey text-center text-xs m-4">
-                Incididunt dolore ut aliquip culpa id cupidatat mollit dolore
-                sint esse non c
+                {user.bio ? user.bio : "Your bio"}
               </p>
               <hr className="my-4 mx-4" />
               <h2 className="mx-4 font-bold text-sm">Profile link</h2>

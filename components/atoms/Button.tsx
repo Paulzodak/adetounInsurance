@@ -1,10 +1,12 @@
 import * as React from "react";
 import { motion } from "framer-motion";
+import { BounceLoader } from "react-spinners";
 export interface IButtonProps {
   text: String;
   animate: boolean;
   loading: boolean;
   disable: boolean;
+  bounceLoader?: boolean;
 }
 
 export function Button(props: IButtonProps) {
@@ -13,7 +15,11 @@ export function Button(props: IButtonProps) {
       disabled={props.disable}
       className=" focus:ring-[0.3rem] outline-none focus:ring-teal-50 focus:ring-offset-2 relative border h-full w-full bg-btnGreen text-[white] rounded-md px-4 text-sm sm:text-sm md:text-md overflow-hidden z-0 "
     >
-      <div className="relative z-[5]">{props.text}</div>
+      {!props.loading && !props.bounceLoader ? (
+        <div className="relative z-[5]">{props.text}</div>
+      ) : (
+        <BounceLoader size="2rem" className="mt-1" color="#36d7b7" />
+      )}
       {props.disable && (
         <div>
           {props.animate && (

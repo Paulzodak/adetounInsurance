@@ -29,7 +29,7 @@ export default function Index(props: any) {
   return (
     <Layout>
       <div className="my-20 font-epilogue">
-        <div className="mx-[3.8rem] grid grid-cols-[auto_1rem_auto_1rem_auto]  w-[18rem] justify-between mb-4">
+        <div className="mx-[1rem] grid grid-cols-[auto_1rem_auto_1rem_auto] w-[18rem] text-sm sm:text-md   justify-between mb-4">
           <a href="" className="text-btnGreen">
             Home
           </a>
@@ -46,9 +46,9 @@ export default function Index(props: any) {
             Product details
           </a>
         </div>
-        <div className="grid gap-y-16 md:grid md:grid-cols-2 lg:grid-cols-[40%_60%]  ">
+        <div className="grid gap-y-16 md:grid md:grid-cols-2 lg:grid-cols-[40%_60%] mt-10 ">
           {/*  */}
-          <div className=" grid gap-x-4  grid-cols-[20%_80%] h-80 mx-auto w-[18rem]  md:w-[24rem] md:h-[30rem] ">
+          <div className=" grid gap-x-4   grid-cols-[20%_80%] h-80 mx-auto w-[18rem]  md:w-[24rem] md:h-[30rem] ">
             <div className=" grid gap-y-2 grid-rows-4">
               {product.productImages &&
                 product.productImages.map((item: any, index: number) => {
@@ -84,7 +84,7 @@ export default function Index(props: any) {
             </div>
           </div>
           {/*  */}
-          <div className=" w-[21rem] mx-auto  md:w-[25rem] lg:w-[40rem]  p-4">
+          <div className="  mx-auto   lg:w-[40rem]  p-4">
             <h1 className="text-2xl font-bold">{product.productName}</h1>
             {/* <p className="mt-2 font-bold ">{product.productName}</p> */}
             <div className="mt-8 ">
@@ -161,7 +161,7 @@ export default function Index(props: any) {
             />
           </div>
         </section>
-        <section className="grid md:grid-cols-2 mx-16 gap-x-8 gap-y-14 mt-4">
+        <section className="grid md:grid-cols-2 gap-x-8 gap-y-14 mt-4 mx-4 lg:mx-auto  ">
           <div className=" p-8 rounded-md shadow-lg">
             <h1 className="text-2xl font-bold   ">Directions</h1>
             <div className="break-all text-sm">{product.productDou}</div>
