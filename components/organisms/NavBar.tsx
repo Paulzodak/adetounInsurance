@@ -117,6 +117,41 @@ export function Navbar(props: INavbarProps) {
     dispatch(setSaveRoute(router.pathname));
     console.log(router.pathname);
   };
+  const buttonRender = () => {
+    return (
+      <>
+        {!user ? (
+          <div
+            onClick={() => {
+              userNotSignedHandler();
+            }}
+            className="my-auto h-10 w-[152px] "
+          >
+            <Button
+              text="Register"
+              animate={false}
+              loading={false}
+              disable={false}
+            />
+          </div>
+        ) : (
+          <div
+            onClick={() => {
+              dispatch(logout());
+            }}
+            className="my-auto h-10 w-[152px] "
+          >
+            <Button
+              text="Log out"
+              animate={false}
+              loading={false}
+              disable={false}
+            />
+          </div>
+        )}
+      </>
+    );
+  };
   return (
     <div className="overflow-hidden">
       <div className="h-[5rem]  font-Nunito">
@@ -141,42 +176,7 @@ export function Navbar(props: INavbarProps) {
             showNav={showNav}
             setShowNav={setShowNav}
           />
-          {!user ? (
-            <div
-              onClick={() => {
-                userNotSignedHandler();
-              }}
-              className="my-auto h-10 w-[152px] lg:block hidden"
-            >
-              <Button
-                text="Register"
-                animate={false}
-                loading={false}
-                disable={false}
-              />
-            </div>
-          ) : (
-            <div
-              onClick={() => {
-                dispatch(logout());
-              }}
-              className="my-auto h-10 w-[152px] lg:block hidden"
-            >
-              <Button
-                text="Log out"
-                animate={false}
-                loading={false}
-                disable={false}
-              />
-            </div>
-          )}
-          {/* <NavItems
-            navItems={navItems}
-            showSideNav={showSideNav}
-            setShowSideNav={setShowSideNav}
-          />
-          <div className="hidden lg:block"></div>
-          <NavUtility /> */}
+          <div className="hidden lg:block my-auto">{buttonRender()}</div>
         </div>
       </div>
       <AnimatePresence>
@@ -207,25 +207,15 @@ export function Navbar(props: INavbarProps) {
                     smooth={true}
                     offset={50}
                     duration={500}
-                    // onSetActive={this.handleSetActive}
-                    // onClick={() => {
-                    //   router.push({
-                    //     pathname: item.route,
-                    //   });
-                    // }}
                     className="my-6  relative "
                   >
                     <div className="my-4 text-md">{item.name}</div>
-                    <div
-                      // whileHover={{ width: "50px", backgroundColor: "red" }}
-                      // whileFocus={{ width: "50px", backgroundColor: "red" }}
-
-                      className="absolute top-0 hover:border-b-4 border-mainPurple w-10 h-full rounded-sm  "
-                    ></div>
+                    <div className="absolute top-0 hover:border-b-4 border-mainPurple w-10 h-full rounded-sm  "></div>
                   </Link>
                 );
               })}
             </div>
+            <div className="mx-6 mt-8">{buttonRender()}</div>
           </motion.div>
         )}
       </AnimatePresence>
