@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 const initialState = {
   utilitySearch: "",
   showSearch: false,
+  saveRoute: undefined,
 };
 export const utilitySlice = createSlice({
   name: "utility",
@@ -11,7 +12,14 @@ export const utilitySlice = createSlice({
       state.utilitySearch = action.payload;
     },
     // setShowSearch:
+    setSaveRoute: (state: any, action) => {
+      state.saveRoute = action.payload;
+    },
+    clearSavedRoute: (state: any) => {
+      state.saveRoute = "";
+    },
   },
 });
-export const { setUtilitySearch } = utilitySlice.actions;
+export const { setUtilitySearch, setSaveRoute, clearSavedRoute } =
+  utilitySlice.actions;
 export default utilitySlice.reducer;

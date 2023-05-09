@@ -13,12 +13,14 @@ export function Button(props: IButtonProps) {
   return (
     <button
       disabled={props.disable}
-      className=" focus:ring-[0.3rem] outline-none focus:ring-teal-50 focus:ring-offset-2 relative border h-full w-full bg-btnGreen text-[white] rounded-md px-4 text-sm sm:text-sm md:text-md overflow-hidden z-0 "
+      className=" focus:ring-[0.2rem] outline-none focus:ring-indigo-50 focus:ring-offset-2 relative  h-full w-full bg-mainPurple text-[white] rounded-md lg:rounded-xl px-4 text-sm sm:text-sm md:text-md overflow-hidden z-0 "
     >
       {!props.loading && !props.bounceLoader ? (
-        <div className="relative z-[5]">{props.text}</div>
+        <div className="relative z-[5] lg:text-lg font-nunito">
+          {props.text}
+        </div>
       ) : (
-        <BounceLoader size="2rem" className="mt-1" color="#36d7b7" />
+        <BounceLoader size="2rem" className="mt-1" color="#8084e3" />
       )}
       {props.disable && (
         <div>
@@ -35,7 +37,7 @@ export function Button(props: IButtonProps) {
                 },
               }}
               // exit={{ x: 300 }}
-              className="bg-[#8ae4c08e] h-[10rem] w-[25rem] absolute top-[-5rem] left-[-5rem] rounded-full z-[2]"
+              className="bg-#ff9494 h-[10rem] w-[25rem] absolute top-[-5rem] left-[-5rem] rounded-full z-[2]"
             ></motion.div>
           )}
         </div>

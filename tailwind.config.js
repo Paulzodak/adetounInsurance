@@ -8,15 +8,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        borderGrey: "#DEE1E6FF",
-        textGrey: "#BCC1CAFF",
+        mainPurple: "#373CB1",
+        textGrey: "#5A5A5A",
         btnGreen: " #459D7AFF",
         bgGrey: "#F3F4F6FF",
         lightBtnGreen: "#F4FAF8FF",
+        white: "white",
+        borderGrey: "#E5E5E5",
       },
       fontFamily: {
-        inter: ["'Inter', sans-serif"],
-        epilogue: ["'Epilogue', sans-serif"],
+        nunito: ["'Nunito', sans-serif"],
       },
       backgroundImage: {
         hero: "url('/assets/home/hero.jpg')",
@@ -28,6 +29,7 @@ module.exports = {
         fluidWidthSm: "35rem",
         fluidWidthMd: "40rem",
       },
+      backgroundImage: {},
     },
   },
   plugins: [require("@tailwindcss/forms")],

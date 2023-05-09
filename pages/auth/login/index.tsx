@@ -1,14 +1,11 @@
 import * as React from "react";
 import Input from "@/components/atoms/auth/input";
-import facebook from "../../../assets/auth/facebook.jpg";
-import google from "../../../assets/auth/google.jpg";
-import apple from "../../../assets/auth/apple.jpg";
+import facebook from "../../../assets/auth/Facebook.svg";
+import google from "../../../assets/auth/Google.svg";
+import apple from "../../../assets/auth/Apple.svg";
 import { Button } from "@/components/atoms/Button";
 import { InputField } from "@/components/atoms/auth/InputField";
 import Image from "next/image";
-import { FcGoogle as GoogleIcon } from "react-icons/fc";
-import { BsFacebook as FacebookIcon } from "react-icons/bs";
-import { BsApple as AppleIcon } from "react-icons/bs";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -20,6 +17,9 @@ import { setUser } from "@/redux/slices/userSlice";
 import AuthLayout from "@/components/templates/AuthLayout";
 import { FiEye as EyeOn } from "react-icons/fi";
 import { FiEyeOff as EyeOff } from "react-icons/fi";
+import heroMobile from "../../../assets/auth/loginHeroMobile.svg";
+import hero from "../../../assets/auth/loginHero.jpg";
+import { clearSavedRoute } from "@/redux/slices/utilitySlice";
 export interface IIndexProps {}
 
 export default function Index(props: IIndexProps) {
@@ -27,6 +27,8 @@ export default function Index(props: IIndexProps) {
   const iconSize = "1.1rem";
   const dispatch = useDispatch();
   const { user } = useSelector((state: any) => state.user);
+  const { saveRoute } = useSelector((state: any) => state.utilities);
+  console.log(saveRoute);
   console.log(user);
   const [token, setToken] = useState<any>();
   const { decodedToken, isExpired } = useJwt(token);
@@ -50,17 +52,17 @@ export default function Index(props: IIndexProps) {
   const otherLogin = [
     {
       image: google,
-      icon: <GoogleIcon size={iconSize} className="mx-auto" />,
+      // icon: <GoogleIcon size={iconSize} className="mx-auto" />,
       bg: "bg-red-100",
     },
     {
       image: facebook,
-      icon: <FacebookIcon size={iconSize} className="mx-auto" />,
+      // icon: <FacebookIcon size={iconSize} className="mx-auto" />,
       bg: "bg-sky-100",
     },
     {
       image: apple,
-      icon: <AppleIcon size={iconSize} className="mx-auto" />,
+      // icon: <AppleIcon size={iconSize} className="mx-auto" />,
       bg: "bg-neutral-100",
     },
   ];
@@ -101,6 +103,14 @@ export default function Index(props: IIndexProps) {
           console.log(res);
           if (res.data.user) {
             setToken(res.data.user);
+            Toast.fire({
+              icon: "success",
+              title: "Signed in successfully",
+            });
+            if (saveRoute) {
+              router.push(saveRoute);
+              dispatch(clearSavedRoute());
+            } else router.push("/");
           } else {
             console.log("err");
             Toast.fire({
@@ -110,11 +120,6 @@ export default function Index(props: IIndexProps) {
             setLoading(false);
           }
           setLoading(false);
-          Toast.fire({
-            icon: "success",
-            title: "Signed in successfully",
-          });
-          router.push("/shop");
         })
         .catch((err) => {
           console.log(err);
@@ -127,59 +132,31 @@ export default function Index(props: IIndexProps) {
     }
   };
   return (
-    <section className="">
-      <div className="text-sm text-right m-4">
-        Don't have an account? &nbsp;
-        <button
-          onClick={() => {
-            router.push("/auth/signup");
-          }}
-          className="text-btnGreen underline"
-        >
-          Sign up
-        </button>
-      </div>
-      <AuthLayout>
-        <div className="mx-auto w-[90%] bg-white h-[20rem]">
-          <h1 className="text-center font-bold text-2xl">Sign in</h1>
+    <section className="font-nunito">
+      <AuthLayout hero={hero} heroMobile={heroMobile}>
+        <div className="mx-auto max-w-[388px] w-[90%]  bg-white mt-8 ">
           {/*  */}
-          <div
-            // onBlur={() => {
-            //   inputs.email.length > 4 &&
-            //   inputs.email.includes("@") &&
-            //   inputs.email.includes(".com")
-            //     ? setInputIsValidHandler("email", true)
-            //     : setInputIsValidHandler("email", false);
-            // }}
-            className={`mt-8 mx-auto h-[4rem] w-[18rem] `}
-          >
+          <div className={`mt-4 mx-auto h-[96px] w-full `}>
             <InputField
               setInput={emailHandler}
               inputIsValid={inputIsValid.email}
-              name="Email"
-              placeholder="example@gmail.com"
+              name="Email address"
+              placeholder="Enter your email"
             />
           </div>
           {/*  */}
-          <div
-            // onBlur={() => {
-            //   inputs.password.length > 7
-            //     ? setInputIsValidHandler("password", true)
-            //     : setInputIsValidHandler("password", false);
-            // }}
-            className={`mt-8 mx-auto h-[4rem] w-[18rem] relative`}
-          >
+          <div className={`mt-4 mx-auto h-[96px] w-full relative`}>
             <InputField
               setInput={passwordHandler}
               showPassword={showPassword}
               password
               inputIsValid={inputIsValid.password}
               name="Password"
-              placeholder="Enter at least 8+ characters "
+              placeholder="Enter your password"
             />
             <div
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute left-64 top-[38px]"
+              className="absolute  left-[88%] top-[62px]"
             >
               {showPassword ? (
                 <EyeOn size="1.3rem" className="text-gray-600" />
@@ -189,22 +166,22 @@ export default function Index(props: IIndexProps) {
             </div>
           </div>
           {/*  */}
-          <div className=" grid grid-cols-[auto_auto] justify-between w-[18rem] mx-auto text-xs mt-4">
+          <div className=" grid grid-cols-[auto_auto] justify-between w-full mx-auto text-xs mt-8">
             <div className="grid grid-cols-[auto_auto] gap-x-2 justify-between">
               <input
                 type="checkbox"
-                className=" checked:bg-btnGreen rounded-sm focus:ring-0 "
+                className=" checked:bg-mainPurple rounded-sm focus:ring-0 "
               />
               <p>Keep me logged in</p>
             </div>
-            <div className="text-btnGreen">Forgot password?</div>
+            <div className="text-mainPurple">Forgot password?</div>
           </div>
           <div
             onClick={() => {
               login();
               setLoading(inputIsValid.email && inputIsValid.password && true);
             }}
-            className="mt-8 rounded-md   mx-auto h-[3rem] text-md w-[18rem] shadow-lg"
+            className="mt-8 rounded-xl   mx-auto h-[3.5rem] text-md w-full shadow-lg"
           >
             <Button
               disable={
@@ -212,32 +189,40 @@ export default function Index(props: IIndexProps) {
               }
               animate={true}
               loading={loading}
-              text="Sign in"
+              text="Login"
             />
           </div>
 
           <div className="mt-8 text-center">
-            <p className="">Or sign in with</p>
-            <div className="grid grid-cols-3 gap-x-4 w-[15rem] mt-4  mx-auto">
+            <p className="">Or Login using</p>
+            <div className="grid grid-cols-3 w-[10rem] h-[30px] justify-between  mt-4  mx-auto ">
               {otherLogin.map((item: any) => {
                 return (
                   <button
-                    className={`focus:ring-[0.2rem] outline-none focus:ring-teal-50 focus:ring-offset-2 text-center px-4 py-2  justify-between rounded-2xl ${item.bg}`}
+                  // className={`focus:ring-[0.2rem] outline-none focus:ring-teal-50 focus:ring-offset-2 text-center px-4 py-2  justify-between rounded-2xl ${item.bg}`}
                   >
-                    {item.icon}
+                    <Image
+                      alt="logo"
+                      src={item.image}
+                      className="w-[23px] mx-auto"
+                    />
                   </button>
                 );
               })}
             </div>
           </div>
+          <div className="text-md text-center m-4 ">
+            Don't have an account? &nbsp;
+            <button
+              onClick={() => {
+                router.push("/auth/signup");
+              }}
+              className="text-mainPurple underline font-bold"
+            >
+              Sign up
+            </button>
+          </div>
         </div>
-        {/* <div className="md:hidden text-textGrey text-xs mx-auto w-[15rem] mt-10 relative bottom-[-12rem] mb-4 ">
-          By signing up, you agree with the{" "}
-          <a className="underline decoration-solid" href="">
-            Terms of Use
-          </a>{" "}
-          & <a className="underline decoration-solid">Privacy Policy</a>
-        </div> */}
       </AuthLayout>
     </section>
   );

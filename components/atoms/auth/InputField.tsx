@@ -11,9 +11,8 @@ export interface IInputFieldProps {
 
 export function InputField(props: IInputFieldProps) {
   return (
-    <div className="relative h-full">
-      <div className="absolute left-4 top-2  ">{props.name}</div>
-      {/* <div className=""> */}
+    <div className="relative h-full ">
+      <div className="h-[50%] flex items-center text-lg ">{props.name}</div>
       <input
         onChange={(e) => {
           props.setInput(e.target.value);
@@ -22,16 +21,11 @@ export function InputField(props: IInputFieldProps) {
           !props.password ? "text" : props.showPassword ? "text" : "password"
         }
         placeholder={props.placeholder}
-        className={` outline-none ${
-          !props.inputIsValid ? "focus:ring-rose-50" : " focus:ring-teal-50"
-        } bg-bgGrey h-full w-full outline-0 pt-8  px-4 focus:ring-[0.3rem] focus:ring-offset-2  rounded-md border-none`}
+        // className={` outline-none ${
+        //   !props.inputIsValid ? "focus:ring-rose-50" : " focus:ring-teal-50"
+        // } bg-bgGrey h-[50%] w-full outline-0   px-4 focus:ring-[0.3rem] focus:ring-offset-2  rounded-md border-none`}
+        className="border-[2px] border-borderGrey w-full rounded-md h-[50%] placeholder:text-sm  "
       />
-      {/* <Input
-          setInput={props.setInput}
-          placeholder={props.placeholder}
-          name={props.name}
-        /> */}
-      {/* </div> */}
     </div>
   );
 }

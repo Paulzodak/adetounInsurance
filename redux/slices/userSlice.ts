@@ -38,6 +38,9 @@ export const userSlice = createSlice({
     setUser: (state, action) => {
       state.user = action.payload;
     },
+    logout: (state: any) => {
+      state.user = undefined;
+    },
   },
   // extraReducers: {
   //   [getUser.pending]: (state: any) => {
@@ -53,5 +56,5 @@ export const userSlice = createSlice({
   //   },
   // },
 });
-export const { setUser } = userSlice.actions;
+export const { setUser, logout } = userSlice.actions;
 export default userSlice.reducer;

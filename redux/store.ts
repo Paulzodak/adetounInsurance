@@ -12,7 +12,7 @@ import { createWrapper } from "next-redux-wrapper";
 const isClient = typeof window == "undefined";
 
 const persistConfig = {
-  key: "root1234",
+  key: "adetoun1234",
   storage,
   // whitelist: ["user"],
 };

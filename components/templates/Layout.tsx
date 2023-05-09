@@ -2,78 +2,96 @@ import * as React from "react";
 import { NavItems } from "../molecules/NavItems";
 import { NavUtility } from "../molecules/NavUtility";
 import { CiMail as MailIcon } from "react-icons/ci";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-import { SideNav } from "../molecules/SideNav";
-import { AnimatePresence } from "framer-motion";
-import { CiShop as ShopIcon } from "react-icons/ci";
-import { BsCart3 as OfferIcon } from "react-icons/bs";
-import { CiSettings as SettingsIcon } from "react-icons/ci";
-import { SiBloglovin as BlogIcon } from "react-icons/si";
+import logo from "../../assets/logo.svg";
+import logoWhite from "../../assets/logoWhite.svg";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
+import Image from "next/image";
+import { Button } from "../atoms/Button";
+// import { LearnMore } from "../organisms/LearnMore";
+import { ContactUs } from "../organisms/ContactUs";
+import { Navbar } from "../organisms/NavBar";
+import { MdOutlineCopyright as CopyRightIcon } from "react-icons/md";
 export interface ILayoutProps {}
 export function Layout(props: any) {
   const router = useRouter();
   const { utilitySearch } = useSelector((state: any) => state.utilities);
+  const [showNav, setShowNav] = useState(false);
 
   const [showSideNav, setShowSideNav] = useState(false);
   const iconsize = "1.5rem";
   const navItems = [
     {
       name: "Home",
-      icon: <BlogIcon size={iconsize} />,
       route: "/",
       query: "/",
     },
     {
-      name: "Shop",
-      icon: <ShopIcon size={iconsize} color="inherit" />,
-      route: "/shop",
-      query: "/shop",
-    },
-    {
-      name: "Offers",
-      icon: <OfferIcon size={iconsize} />,
+      name: "What we offer",
       route: "/offers",
       query: "/offers",
     },
     {
-      name: "Settings",
-      icon: <SettingsIcon size={iconsize} />,
+      name: "Our process",
+      route: "/settings",
+      query: "/settings",
+    },
+    {
+      name: "Our packages",
+      route: "/settings",
+      query: "/settings",
+    },
+    {
+      name: "Contact",
+      route: "/settings",
+      query: "/settings",
+    },
+    {
+      name: "FAQ",
       route: "/settings",
       query: "/settings",
     },
   ];
-  const FooterItems = [
+  const footerItems = [
     {
-      header: "About",
+      header: "Useful Links",
       routes: [
         {
           name: "Home",
         },
         {
-          name: "Shop",
+          name: "Our process",
         },
         {
-          name: "Our story",
+          name: "Our packages",
         },
         {
-          name: "Blogs",
+          name: "Contact",
+        },
+        {
+          name: "FAQ",
         },
       ],
     },
     {
-      header: "Help",
+      header: "Company info",
       routes: [
         {
-          name: "Shipping & Returns",
+          name: "Adetoun insurance",
         },
         {
-          name: "Track Order",
+          name: "23, Allen ,Ikeja , Lagos State",
         },
         {
-          name: "FAQS",
+          name: "Lagos State",
+        },
+        {
+          name: "Adetoun122@gmail.com",
+        },
+        {
+          name: "(+234) 816 485 7706",
         },
       ],
     },
@@ -96,97 +114,70 @@ export function Layout(props: any) {
     },
   ];
   return (
-    <div>
-      <AnimatePresence>
-        {showSideNav && (
-          // <div className="top-0 fixed z-20 w-[100vw] h-[100vh] backdrop-blur-sm">
-          <motion.div
-            initial={{ x: -500 }}
-            animate={{
-              x: 0,
-
-              // transition: { duration: 1 },
-              transition: {
-                type: "spring",
-                // duration: 200,
-                stiffness: 200,
-                damping: 40,
-                mass: 2,
-              },
-            }}
-            exit={{
-              x: -500,
-              transition: {
-                // duration: 200,
-                type: "spring",
-                stiffness: 1000,
-                damping: 40,
-                mass: 1,
-              },
-            }}
-            className="fixed w-screen  sm:w-[50%] h-screen overflow-hidden bg-[white] z-10 border lg:hidden top-[4rem]"
-          >
-            <SideNav
-              navItems={navItems}
-              showSideNav={showSideNav}
-              setShowSideNav={setShowSideNav}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
+    <div className="max-w-[100vw] overflow-hidden">
       {/* ------------------NAVBAR--------------------------- */}
-      <div className="h-[4rem]">
-        <div className="grid grid-cols-[0.5fr_2fr] lg:grid-cols-[17rem_3rem_40rem] w-full justify-around h-[4rem] overflow-hidden fixed bg-[white] z-10 shadow-md">
-          <NavItems
-            navItems={navItems}
-            showSideNav={showSideNav}
-            setShowSideNav={setShowSideNav}
-          />
-          <div className="hidden lg:block"></div>
-          <NavUtility />
-        </div>
-      </div>
-
+      <Navbar />
       {props.children}
+      {/* <LearnMore /> */}
+      <ContactUs />
       {/* -------------FOOTER-------------------- */}
-      <div className="bg-[#1D2128FF] md:h-[27rem] w-full grid grid-rows-[auto_auto]  md:grid-cols-[35%_35%] justify-around pt-[4rem]  overflow-hidden px-4">
-        <div className=" h-[17rem] grid grid-cols-3 ">
-          {FooterItems.map((item: any) => {
-            return (
-              <div className=" grid-rows-5 text-[white]">
-                <div className="text-md font-bold"> {item.header} </div>
-                {item.routes.map((items: any) => {
-                  return (
-                    <div className="text-[white] my-4 text-sm   break-words w-full ">
-                      {items.name}
-                    </div>
-                  );
-                })}
-              </div>
-            );
-          })}
+      <section className=" bg-mainPurple grid lg:grid-cols-[repeat(4,auto)] sm:grid-cols-[50%_25%_25%] grid-cols-[auto] gap-y-4 justify-between lg:gap-x-10 gap-x-4 text-white p-4 sm:p-14 font-nunito">
+        <div className="  ">
+          {/*  */}
+          <div className="flex gap-x-4  h-8 ">
+            <div className="relative h-[32px] w-[32px]">
+              <Image src={logoWhite} fill alt="logo" className="text-white" />
+            </div>
+            <div className="my-auto text-lg font-bold ">Adetoun Insurance</div>
+          </div>
+          {/*  */}
+          <div className="text-white text-sm mt-12">
+            Attaining well tested and trusted insurance in the best way
+            possible, Register with us today and get the best and affordable
+            plans that suits your interest
+          </div>
         </div>
-        <div className=" h-[17rem] ">
-          <h1 className="text-[white] text-xl font-bold">
-            Receive new promotions
-          </h1>
-          <div className="mt-8 grid grid-cols-[12rem_6rem] relative">
+        <div className="">
+          <h1 className="mt-1 font-bold">{footerItems[0].header}</h1>
+          <div className="text-sm mt-12">
+            {footerItems[0].routes.map((item: any) => {
+              return <div className="mb-8">{item.name}</div>;
+            })}
+          </div>
+        </div>
+        <div className="">
+          <h1 className="mt-1 font-bold">{footerItems[1].header}</h1>
+          <div className="text-sm mt-12">
+            {footerItems[1].routes.map((item: any) => {
+              return <div className="mb-8">{item.name}</div>;
+            })}
+          </div>
+        </div>
+        <div>
+          <h1 className="mt-1 font-bold">Our News Letter</h1>
+          <p className="text-sm mt-12">
+            Subscribe to our News letter and get latest update regularly
+          </p>
+          <div className="relative mt-4">
             <input
-              className="h-[3rem] rounded-tl-md rounded-bl-md bg-transparent border border-[#9095A0FF] pl-10"
-              placeholder="Input your email"
+              className="bg-white w-[344px] h-[66px] rounded-xl text-textGrey pl-8 pr-36 text-sm "
+              placeholder="Enter your email address"
             />
-            <MailIcon
-              className="absolute top-3 left-2"
-              color="white"
-              size="1.5rem"
-            />
-            <button className="text-[white] bg-btnGreen rounded-tr-md rounded-br-md">
-              Subscribe
-            </button>
-            <div className="text-[white] mt-8 w-full whitespace-nowrap text-sm">
-              © 2022 Brand, Inc. • Privacy • Terms • Sitemap
+            <div className="absolute top-2 h-12 left-[220px] ">
+              <Button
+                text="Subscribe"
+                loading={false}
+                animate={false}
+                disable={false}
+              />
             </div>
           </div>
+        </div>
+      </section>
+      <div className="px-4 sm:px-20 py-6 grid grid-cols-[2rem_auto] ">
+        <CopyRightIcon className="" size="1.5rem" />
+        <div className="text-sm sm:text-md ">
+          Copyright. Adetoun Insurance 2023. All rights reserved.
         </div>
       </div>
     </div>

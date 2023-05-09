@@ -1,25 +1,42 @@
 import * as React from "react";
 import bg from "../../assets/auth/bg.jpeg";
 import Image from "next/image";
+import { Navbar } from "../organisms/NavBar";
+import logo from "../../assets/logoBlack.svg";
+import { useRouter } from "next/router";
 export interface IAuthLayoutProps {
   children: any;
+  hero: any;
+  heroMobile: any;
 }
 
 export default function AuthLayout(props: IAuthLayoutProps) {
+  const router = useRouter();
   return (
     <>
-      <div className=" grid md:grid-cols-2 md:w-[50rem] mx-auto md:shadow-2xl md:rounded-lg md:h-[30rem] mt-10">
-        <div className="py-4  md:overflow-y-scroll  ">{props.children}</div>
-        <div className="relative hidden md:block">
-          <Image src={bg} alt="bg" fill />
-        </div>
+      <div className="lg:hidden">
+        <Navbar />
       </div>
-      <div className="hidden md:block text-textGrey text-xs mx-auto w-[15rem]  mt-20 ">
-        By signing up, you agree with the{" "}
-        <a className="underline decoration-solid" href="">
-          Terms of Use
-        </a>{" "}
-        & <a className="underline decoration-solid">Privacy Policy</a>
+      <div className="lg:grid grid-cols-[40%_60%]">
+        <Image
+          src={props.hero}
+          alt=""
+          className="w-full lg:h-full hidden lg:block"
+        />
+        <Image
+          src={props.heroMobile}
+          alt=""
+          className=" lg:hidden w-full lg:h-full"
+        />
+        <div className="mt-4">
+          <div onClick={() => router.push("/")}>
+            <Image src={logo} alt="" className="w-[28px] h-[27px] mx-auto " />
+            <h1 className="text-center font-bold text-2xl mt-4">
+              Adetoun Insurance
+            </h1>
+          </div>
+          {props.children}
+        </div>
       </div>
     </>
   );
