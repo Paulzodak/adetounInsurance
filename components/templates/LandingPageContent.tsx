@@ -323,7 +323,7 @@ export default function LandingPageContent(props: ILandingPageContent) {
           </div>
           {isOn ? rendered(123) : rendered(13)}
         </section>
-        <section className="p-10 font-nunito">
+        <section className="p-4 sm:p-10 font-nunito">
           <h1 className="text-2xl font-bold">
             Want to learn More about Insurance?
           </h1>

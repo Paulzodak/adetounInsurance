@@ -17,7 +17,6 @@ import { SectionThree } from "@/components/organisms/home/SectionThree";
 import { SectionFour } from "@/components/organisms/home/SectionFour";
 import { SectionFive } from "@/components/organisms/home/SectionFive";
 import { FAQ } from "@/components/organisms/home/FAQ";
-import { SectionSix } from "@/components/organisms/home/SectionSix";
 import { ContactUs } from "@/components/organisms/ContactUs";
 import life from "../assets/home/packages/life.svg";
 import auto from "../assets/home/packages/auto.svg";
