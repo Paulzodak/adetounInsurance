@@ -32,7 +32,9 @@ export function SectionTwo(props: ISectionTwoProps) {
     console.log(router.pathname);
   };
   return (
-    <section className="What we offer sm:p-10 p-4  gap-x-2 grid sm:grid-cols-auto  md:grid-cols-[auto_400px] lg:grid-cols-[auto_700px]  md:h-[800px] h-[1300px] font-nunito">
+    <div
+      className={` offers sm:p-10 p-4  gap-x-2 grid sm:grid-cols-auto  md:grid-cols-[auto_400px] lg:grid-cols-[auto_700px]  md:h-[800px] h-[1300px] font-nunito`}
+    >
       <div>
         <h1 className="text-mainPurple text-sm">ABOUT US</h1>
         <h2 className=" text-4xl mt-6">
@@ -92,6 +94,6 @@ export function SectionTwo(props: ISectionTwoProps) {
           }
         />
       </div>
-    </section>
+    </div>
   );
 }

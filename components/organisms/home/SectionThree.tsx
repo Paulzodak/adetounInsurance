@@ -38,7 +38,7 @@ export function SectionThree(props: ISectionThreeProps) {
     },
   ];
   return (
-    <section className="Our process p-4 sm:p-10 font-nunito">
+    <section className="process p-4 sm:p-10 font-nunito">
       <h1 className="text-2xl text-center font-bold">Our process</h1>
       <p className=" text-center sm:w-[350px] mt-4 text-textGrey mx-auto">
         Take a look at the processes to follow to get health insurance for you

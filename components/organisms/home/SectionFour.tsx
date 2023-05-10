@@ -42,7 +42,7 @@ export function SectionFour(props: ISectionFourProps) {
   ];
   return (
     <>
-      <section className="Our packages p-10 font-nunito ">
+      <section className="packages p-10 font-nunito ">
         <h1 className="text-2xl text-center font-bold">
           Our Insurance Packages
         </h1>

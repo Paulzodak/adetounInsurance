@@ -7,7 +7,7 @@ export interface IContactUsProps {}
 export function ContactUs(props: IContactUsProps) {
   return (
     <div
-      className={`Contact relative h-[690px] bg-cover w-full bg-[url('../assets/home/background/image5.jpeg')] font-nunito  px-4 sm:px-8 py-20 justify-between`}
+      className={`contact relative h-[690px] bg-cover w-full bg-[url('../assets/home/background/image5.jpeg')] font-nunito  px-4 sm:px-8 py-20 justify-between`}
     >
       <h1 className="text-white text-3xl ">Contact Us</h1>
       <section className=" grid sm:grid-cols-[55%_35%] mt-4 ">

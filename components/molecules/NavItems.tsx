@@ -11,11 +11,11 @@ export function NavItems(props: any) {
         {props.navItems.map((item: any) => (
           <Link
             activeClass="active"
-            to={item.name}
+            to={item.to}
             spy={true}
             smooth={true}
-            offset={50}
-            duration={500}
+            // offset={50}
+            duration={2000}
             // onClick={() => {
             //   router.push({
             //     pathname: item.route,

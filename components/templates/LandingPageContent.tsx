@@ -13,6 +13,7 @@ import verify from "../../assets/home/verify.svg";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { setSaveRoute } from "@/redux/slices/utilitySlice";
+import { Toast } from "@/utils/global";
 export interface ILandingPageContent {
   insuranceReason: any;
   hero: any;
@@ -21,8 +22,11 @@ export interface ILandingPageContent {
   learnMoreItems: any;
   selectPlanText: string;
 }
+import { Element } from "react-scroll";
+import { scroller } from "react-scroll";
+
 export default function LandingPageContent(props: ILandingPageContent) {
-  const { username } = useSelector((state: any) => state.user);
+  const { user } = useSelector((state: any) => state.user);
   const dispatch = useDispatch();
   const router = useRouter();
   const caretClasses = "pb-[3px] sm:pb-0";
@@ -186,7 +190,12 @@ export default function LandingPageContent(props: ILandingPageContent) {
                   </div>
                   <div
                     onClick={() => {
-                      userNotSignedHandler();
+                      !user
+                        ? userNotSignedHandler()
+                        : Toast.fire({
+                            icon: "error",
+                            title: "Try again later",
+                          });
                     }}
                     className="h-14 mt-8 cursor-pointer "
                   >
@@ -204,6 +213,19 @@ export default function LandingPageContent(props: ILandingPageContent) {
         </AnimatePresence>
       </motion.div>
     );
+  };
+  // var scroll    = Scroll.animateScroll;
+  // handleSetActive: function(to) {
+  //   console.log(to);
+  // },
+  const scrollToPlans = () => {
+    console.log("i ran");
+    scroller.scrollTo("plans", {
+      duration: 1500,
+      delay: 100,
+      smooth: true,
+      // offset: 50,
+    });
   };
   return (
     <>
@@ -236,7 +258,7 @@ export default function LandingPageContent(props: ILandingPageContent) {
             </div>
             <div
               onClick={() => {
-                userNotSignedHandler();
+                !user ? userNotSignedHandler() : scrollToPlans();
               }}
               className="cursor-pointer m-auto mt-[-100px] h-12 w-40 border-[3px] rounded-xl overflow-hidden"
             >
@@ -249,7 +271,7 @@ export default function LandingPageContent(props: ILandingPageContent) {
             </div>
           </div>
         </div>
-        <section className="p-4 sm:p-20  font-nunito ">
+        <section className="p-4 sm:p-20  font-nunito mt-4 ">
           <h1 className=" text-2xl font-bold">What we offer</h1>
           <p className="sm:w-[40%] text-sm text-textGrey mt-4 ">
             {props.offerDetail}
@@ -274,7 +296,13 @@ export default function LandingPageContent(props: ILandingPageContent) {
             })}
           </div>
 
-          <h1 className="mt-10 text-2xl font-bold w-[35%]">Select plan</h1>
+          <Element
+            id="plans"
+            name="plans"
+            className="plans mt-10 text-2xl font-bold w-[35%]"
+          >
+            Select plan
+          </Element>
           <p className="text-textGrey mt-4 w-80">{props.selectPlanText}</p>
           <div className="grid grid-cols-3 w-[400px] mx-auto  justify-items-center mt-8 ">
             <div className="text-lg font-bold">Monthly</div>

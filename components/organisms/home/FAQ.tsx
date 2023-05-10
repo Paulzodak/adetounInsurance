@@ -48,7 +48,7 @@ export function FAQ(props: IFAQProps) {
     setFAQ((prev: any) => {
       const temp = [...prev];
       temp.filter((item: any) =>
-        item.id == id ? (item.active = true) : (item.active = false)
+        item.id == id ? (item.active = !item.active) : (item.active = false)
       );
       return temp;
     });

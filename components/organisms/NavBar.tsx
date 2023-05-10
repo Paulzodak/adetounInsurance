@@ -10,6 +10,7 @@ import { useState } from "react";
 import { setSaveRoute } from "@/redux/slices/utilitySlice";
 import { Link } from "react-scroll";
 import { logout } from "@/redux/slices/userSlice";
+import { Toast } from "@/utils/global";
 export interface INavbarProps {}
 
 export function Navbar(props: INavbarProps) {
@@ -26,31 +27,37 @@ export function Navbar(props: INavbarProps) {
       name: "Home",
       route: "/",
       query: "/",
+      to: "home",
     },
     {
       name: "What we offer",
       route: "/offers",
       query: "/offers",
+      to: "offers",
     },
     {
       name: "Our process",
       route: "/settings",
       query: "/settings",
+      to: "process",
     },
     {
       name: "Our packages",
       route: "/settings",
       query: "/settings",
+      to: "packages",
     },
     {
       name: "Contact",
       route: "/settings",
       query: "/settings",
+      to: "contact",
     },
     {
       name: "FAQ",
       route: "/settings",
       query: "/settings",
+      to: "FAQ",
     },
   ];
   const footerItems = [
@@ -128,7 +135,7 @@ export function Navbar(props: INavbarProps) {
             className="my-auto h-10 w-[152px] "
           >
             <Button
-              text="Register"
+              text="Sign in"
               animate={false}
               loading={false}
               disable={false}
@@ -138,6 +145,10 @@ export function Navbar(props: INavbarProps) {
           <div
             onClick={() => {
               dispatch(logout());
+              Toast.fire({
+                icon: "success",
+                title: "Signed out successfully",
+              });
             }}
             className="my-auto h-10 w-[152px] "
           >
@@ -202,7 +213,7 @@ export function Navbar(props: INavbarProps) {
                 return (
                   <Link
                     activeClass="active"
-                    to={item.name}
+                    to={item.to}
                     spy={true}
                     smooth={true}
                     offset={50}
