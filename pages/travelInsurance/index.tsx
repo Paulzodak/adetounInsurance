@@ -11,6 +11,7 @@ import image2 from "../../assets/travelInsurance/image2.svg";
 import image3 from "../../assets/travelInsurance/image3.svg";
 import LandingPageContent from "@/components/templates/LandingPageContent";
 import hero from "../../assets/travelInsurance/hero.jpeg";
+import Helmet from "react-helmet";
 export default function Home() {
   const { username } = useSelector((state: any) => state.user);
   console.log(username);
@@ -59,14 +60,20 @@ export default function Home() {
     },
   ];
   return (
-    <LandingPageContent
-      learnMoreItems={learnMoreItems}
-      insuranceReason={insuranceReason}
-      hero={hero}
-      heroHeader="Travel Insurance for you and your Family"
-      offerDetail="Quality and affordable Travel insurance for you and your family, This insurance is designed to provide coverage for unexpected events that may occur when travelling, Also providing financial protection during medical emergencies, Trip cancellation, lost or stolen lugages, and other travel related incidents."
-      selectPlanText="Select a suitable plan for your Travel  insurance today"
-    />
+    <>
+      <Helmet>
+        <title> Travel Insurance </title>
+        <meta name="description" content="Home page" />
+      </Helmet>
+      <LandingPageContent
+        learnMoreItems={learnMoreItems}
+        insuranceReason={insuranceReason}
+        hero={hero}
+        heroHeader="Travel Insurance for you and your Family"
+        offerDetail="Quality and affordable Travel insurance for you and your family, This insurance is designed to provide coverage for unexpected events that may occur when travelling, Also providing financial protection during medical emergencies, Trip cancellation, lost or stolen lugages, and other travel related incidents."
+        selectPlanText="Select a suitable plan for your Travel  insurance today"
+      />
+    </>
   );
 }
 const spring = {

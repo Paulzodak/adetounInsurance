@@ -19,7 +19,7 @@ import heroMobile from "../../../assets/auth/signupHeroMobile.svg";
 import hero from "../../../assets/auth/signupHero.jpg";
 import success from "../../../assets/animation.gif";
 import { motion } from "framer-motion";
-
+import Helmet from "react-helmet";
 export interface IIndexProps {}
 export default function Index(props: IIndexProps) {
   const router = useRouter();
@@ -129,6 +129,10 @@ export default function Index(props: IIndexProps) {
   console.log(inputs);
   return (
     <section className="font-nunito">
+      <Helmet>
+        <title> Signup </title>
+        <meta name="description" content="Home page" />
+      </Helmet>
       <AuthLayout hero={hero} heroMobile={heroMobile}>
         {/* <button onClick={() => setStartAnimation(!startAnimation)}>
           click

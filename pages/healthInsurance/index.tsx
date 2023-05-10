@@ -7,6 +7,7 @@ import hero from "../../assets/healthInsurance/hero.jpeg";
 import image1 from "../../assets/healthInsurance/image1.svg";
 import image2 from "../../assets/healthInsurance/image2.svg";
 import image3 from "../../assets/healthInsurance/image3.svg";
+import Helmet from "react-helmet";
 export interface IAppProps {}
 
 export default function App(props: IAppProps) {
@@ -50,13 +51,19 @@ export default function App(props: IAppProps) {
   //   const hero = "url(../assets/healthInsurance/homeHero.svg)";
 
   return (
-    <LandingPageContent
-      learnMoreItems={learnMoreItems}
-      insuranceReason={insuranceReason}
-      hero={hero}
-      heroHeader="Affordable Health Insurance for you and your Family"
-      offerDetail="Health insurance is a type of insurance policy that covers the cost of medical expenses, such as doctor visits, hospitalization, and prescription drugs. It is designed to protect individuals and families from financial hardship in the event of an unexpected illness or injury."
-      selectPlanText="Select a suitable plan for your health insurance today"
-    />
+    <>
+      <Helmet>
+        <title> Health Insurance </title>
+        <meta name="description" content="Home page" />
+      </Helmet>
+      <LandingPageContent
+        learnMoreItems={learnMoreItems}
+        insuranceReason={insuranceReason}
+        hero={hero}
+        heroHeader="Affordable Health Insurance for you and your Family"
+        offerDetail="Health insurance is a type of insurance policy that covers the cost of medical expenses, such as doctor visits, hospitalization, and prescription drugs. It is designed to protect individuals and families from financial hardship in the event of an unexpected illness or injury."
+        selectPlanText="Select a suitable plan for your health insurance today"
+      />
+    </>
   );
 }

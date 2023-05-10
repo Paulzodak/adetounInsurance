@@ -11,6 +11,7 @@ import image2 from "../../assets/propertyInsurance/image2.svg";
 import image3 from "../../assets/propertyInsurance/image3.svg";
 import LandingPageContent from "@/components/templates/LandingPageContent";
 import hero from "../../assets/propertyInsurance/hero.jpeg";
+import Helmet from "react-helmet";
 export default function Home() {
   const { username } = useSelector((state: any) => state.user);
   console.log(username);
@@ -59,14 +60,20 @@ export default function Home() {
     },
   ];
   return (
-    <LandingPageContent
-      learnMoreItems={learnMoreItems}
-      insuranceReason={insuranceReason}
-      hero={hero}
-      heroHeader="Quality Home and Property Insurance Just a click away"
-      offerDetail="This insurance provides important protections for your home, belongings, and liability risks. It offers financial security, peace of mind, and may be required by your mortgage lender. Customizable coverage options allow you to design a policy that fits your needs and budget."
-      selectPlanText="Select a suitable plan for your Home/ Property insurance today"
-    />
+    <>
+      <Helmet>
+        <title> Property Insurance </title>
+        <meta name="description" content="Home page" />
+      </Helmet>
+      <LandingPageContent
+        learnMoreItems={learnMoreItems}
+        insuranceReason={insuranceReason}
+        hero={hero}
+        heroHeader="Quality Home and Property Insurance Just a click away"
+        offerDetail="This insurance provides important protections for your home, belongings, and liability risks. It offers financial security, peace of mind, and may be required by your mortgage lender. Customizable coverage options allow you to design a policy that fits your needs and budget."
+        selectPlanText="Select a suitable plan for your Home/ Property insurance today"
+      />
+    </>
   );
 }
 const spring = {

@@ -11,6 +11,7 @@ import image2 from "../../assets/carInsurance/image2.svg";
 import image3 from "../../assets/carInsurance/image3.svg";
 import LandingPageContent from "@/components/templates/LandingPageContent";
 import hero from "../../assets/carInsurance/hero.jpeg";
+import Helmet from "react-helmet";
 export default function Home() {
   const { username } = useSelector((state: any) => state.user);
   console.log(username);
@@ -59,14 +60,20 @@ export default function Home() {
     },
   ];
   return (
-    <LandingPageContent
-      learnMoreItems={learnMoreItems}
-      insuranceReason={insuranceReason}
-      hero={hero}
-      heroHeader="Quality Insurance for your Motor Vehicles"
-      offerDetail="Health insurance is a type of insurance policy that covers the cost of medical expenses, such as doctor visits, hospitalization, and prescription drugs. It is designed to protect individuals and families from financial hardship in the event of an unexpected illness or injury."
-      selectPlanText="Select a suitable plan for your Motor/ Automobile insurance today"
-    />
+    <>
+      <Helmet>
+        <title> Car Insurance </title>
+        <meta name="description" content="Home page" />
+      </Helmet>
+      <LandingPageContent
+        learnMoreItems={learnMoreItems}
+        insuranceReason={insuranceReason}
+        hero={hero}
+        heroHeader="Quality Insurance for your Motor Vehicles"
+        offerDetail="Health insurance is a type of insurance policy that covers the cost of medical expenses, such as doctor visits, hospitalization, and prescription drugs. It is designed to protect individuals and families from financial hardship in the event of an unexpected illness or injury."
+        selectPlanText="Select a suitable plan for your Motor/ Automobile insurance today"
+      />
+    </>
   );
 }
 const spring = {

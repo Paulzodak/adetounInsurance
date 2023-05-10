@@ -24,6 +24,7 @@ import travel from "../assets/home/packages/travel.svg";
 import health from "../assets/home/packages/health.svg";
 import property from "../assets/home/packages/property.svg";
 import business from "../assets/home/packages/business.svg";
+import Helmet from "react-helmet";
 export default function Home() {
   const { username } = useSelector((state: any) => state.user);
   console.log(username);
@@ -91,6 +92,10 @@ export default function Home() {
   ];
   return (
     <>
+      <Helmet>
+        <title> Adetoun Insurance </title>
+        <meta name="description" content="Home page" />
+      </Helmet>
       <Layout>
         <div className="grid  grid-cols-2 sm:grid-cols-4 font-nunito w-screen ">
           <div className="relative h-[642px] bg-cover w-full bg-[url('../assets/home/background/image1.jpeg')] font-nunito hidden sm:block"></div>

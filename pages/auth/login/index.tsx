@@ -20,6 +20,7 @@ import { FiEyeOff as EyeOff } from "react-icons/fi";
 import heroMobile from "../../../assets/auth/loginHeroMobile.svg";
 import hero from "../../../assets/auth/loginHero.jpg";
 import { clearSavedRoute } from "@/redux/slices/utilitySlice";
+import Helmet from "react-helmet";
 export interface IIndexProps {}
 
 export default function Index(props: IIndexProps) {
@@ -133,6 +134,10 @@ export default function Index(props: IIndexProps) {
   };
   return (
     <section className="font-nunito">
+      <Helmet>
+        <title> Login</title>
+        <meta name="description" content="Home page" />
+      </Helmet>
       <AuthLayout hero={hero} heroMobile={heroMobile}>
         <div className="mx-auto max-w-[388px] w-[90%]  bg-white mt-8 ">
           {/*  */}

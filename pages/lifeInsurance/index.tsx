@@ -11,6 +11,7 @@ import image2 from "../../assets/lifeInsurance/image2.svg";
 import image3 from "../../assets/lifeInsurance/image3.svg";
 import LandingPageContent from "@/components/templates/LandingPageContent";
 import hero from "../../assets/lifeInsurance/hero.jpeg";
+import Helmet from "react-helmet";
 export default function Home() {
   const { username } = useSelector((state: any) => state.user);
   console.log(username);
@@ -59,14 +60,20 @@ export default function Home() {
     },
   ];
   return (
-    <LandingPageContent
-      learnMoreItems={learnMoreItems}
-      insuranceReason={insuranceReason}
-      hero={hero}
-      heroHeader="Affordable Life Insurance for you and your Family"
-      offerDetail="Quality and affordable life insurance for you and your family, This insurance is designed to provide financial support for your loved ones in the event of unexpected death, helping to cover expenses such as funeral cost, outstanding debts and daily living expenses."
-      selectPlanText="Select a suitable plan for your Life insurance today"
-    />
+    <>
+      <Helmet>
+        <title> Life Insurance </title>
+        <meta name="description" content="Home page" />
+      </Helmet>
+      <LandingPageContent
+        learnMoreItems={learnMoreItems}
+        insuranceReason={insuranceReason}
+        hero={hero}
+        heroHeader="Affordable Life Insurance for you and your Family"
+        offerDetail="Quality and affordable life insurance for you and your family, This insurance is designed to provide financial support for your loved ones in the event of unexpected death, helping to cover expenses such as funeral cost, outstanding debts and daily living expenses."
+        selectPlanText="Select a suitable plan for your Life insurance today"
+      />
+    </>
   );
 }
 const spring = {

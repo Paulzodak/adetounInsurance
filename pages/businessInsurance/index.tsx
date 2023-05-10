@@ -7,6 +7,7 @@ import hero from "../../assets/businessInsurance/homeHero.jpeg";
 import image1 from "../../assets/businessInsurance/image1.svg";
 import image2 from "../../assets/businessInsurance/image2.svg";
 import image3 from "../../assets/businessInsurance/image3.svg";
+import Helmet from "react-helmet";
 export interface IAppProps {}
 
 export default function App(props: IAppProps) {
@@ -51,6 +52,10 @@ export default function App(props: IAppProps) {
   const learnMore = [];
   return (
     <div>
+      <Helmet>
+        <title> Business Insurance </title>
+        <meta name="description" content="Home page" />
+      </Helmet>
       <LandingPageContent
         learnMoreItems={learnMoreItems}
         insuranceReason={insuranceReason}
